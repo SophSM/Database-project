@@ -58,8 +58,8 @@
                   $campos = $result_operon->fetch_object();
                     ?>
                   <tr>
-                    <td><?= $campos->operon_id; ?></td>
-                    <td><?= $campos->operon_name; ?> </a> </td>
+                  <?php echo '<td> <a href="info_operon.php?question='.$campos->operon_id.'&Submit=Buscar"> '; ?><?= $campos->operon_id; ?> </a> </td>
+                  <?php echo '<td> <a href="info_operon.php?question='.$campos->operon_name.'&Submit=Buscar"> '; ?><?= $campos->operon_name; ?> </a> </td>
                   </tr>
                   <?php } ?>
                   </tbody>
