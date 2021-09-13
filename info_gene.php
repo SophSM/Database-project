@@ -103,15 +103,41 @@ tr:not(:first-child)>* { border-left:0; }
               <table>
               <tr>
                     <th> Name </th> 
+                    <th>Operon Arrangement</th>
               </tr>    
               <tr>
                 <td>
-                <?php $operon= $mysqli->query("SELECT o.operon_name FROM OPERON o JOIN TRANSCRIPTION_UNIT t ON o.operon_id=t.operon_id JOIN TU_GENE_LINK tu ON t.transcription_unit_id=tu.transcription_unit_id JOIN GENE g ON tu.gene_id=g.gene_id AND g.gene_id = '" . $campos->gene_id. "'");
+                <?php $operon= $mysqli->query("SELECT o.operon_name, o.operon_id FROM OPERON o JOIN TRANSCRIPTION_UNIT t ON o.operon_id=t.operon_id JOIN TU_GENE_LINK tu ON t.transcription_unit_id=tu.transcription_unit_id JOIN GENE g ON tu.gene_id=g.gene_id AND g.gene_id = '" . $campos->gene_id. "'");
                       for ($num_fila = 1;  $num_fila <= $operon->num_rows; $num_fila++) {
                         $campos5 = $operon->fetch_object();
                       }
-                      echo $campos5->operon_name;
+                ?>
+                  <?php echo '<td> <a href="info_operon.php?question='.$campos5->operon_id.'&Submit=Buscar"> '; ?><?= $campos5->operon_name; ?> </a> </td>
+                </td>
+                <td>
+                  <table>
+                  <tr>
+                      <th>Transcription unit</th>
+                      <th>Promoter</th>
+                  </tr>
+                  <tr>
+                    <td>
+                <?php $tu= $mysqli->query("SELECT * FROM TRANSCRIPTION_UNIT WHERE operon_id = '" . $campos5->operon_id. "'");
+                      for ($num_fila = 1;  $num_fila <= $tu->num_rows; $num_fila++) {
+                        $trans_u = $tu->fetch_object();
+                      }
+                      echo $trans_u->transcription_unit_name;
                     ?>
+                    </td>
+                    <td>
+                      <?php $promoter = $mysqli->query("SELECT * FROM PROMOTER WHERE promoter_id = '" . $trans_u->promoter_id. "'"); 
+                       for ($num_fila = 1;  $num_fila <= $promoter->num_rows; $num_fila++) {
+                        $promoter_tab = $promoter->fetch_object();
+                      }
+                      echo $promoter_tab -> promoter_name?>
+                    </td>
+                  </tr>
+                  </table>
                 </td>
               </tr>
 
