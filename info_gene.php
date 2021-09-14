@@ -121,21 +121,17 @@ tr:not(:first-child)>* { border-left:0; }
                       <th>Promoter</th>
                   </tr>
                   <tr>
-                    <td>
                 <?php $tu= $mysqli->query("SELECT * FROM TRANSCRIPTION_UNIT WHERE operon_id = '" . $campos5->operon_id. "'");
                       for ($num_fila = 1;  $num_fila <= $tu->num_rows; $num_fila++) {
                         $trans_u = $tu->fetch_object();
+                        echo "<td>".$trans_u->transcription_unit_name."</td>";
                       }
-                      echo $trans_u->transcription_unit_name;
-                    ?>
-                    </td>
-                    <td>
+                     ?> 
                       <?php $promoter = $mysqli->query("SELECT * FROM PROMOTER WHERE promoter_id = '" . $trans_u->promoter_id. "'"); 
                        for ($num_fila = 1;  $num_fila <= $promoter->num_rows; $num_fila++) {
                         $promoter_tab = $promoter->fetch_object();
-                      }
-                      echo $promoter_tab -> promoter_name?>
-                    </td>
+                        echo "<td>". $promoter_tab -> promoter_name ."</td>";
+                      }?>
                   </tr>
                   </table>
                 </td>
@@ -147,6 +143,12 @@ tr:not(:first-child)>* { border-left:0; }
               </table>
             <?php
               $result_gene->close();
+              $sinonimos->close();
+              $product->close();
+              $product_synonym->close();
+              $operon->close();
+              $tu->close();
+              $promoter->close();
             }?>
     </body>
 </html>
