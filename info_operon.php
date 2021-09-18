@@ -1,14 +1,7 @@
 <html>
     <head>
         <title> Results </title>
-        <style>
-        tr { display: block; float: left; }
-th, td { display: block; border: 1px solid black; }
 
-/* border-collapse */
-tr>*:not(:first-child) { border-top: 0; }
-tr:not(:first-child)>* { border-left:0; }
-      </style>
     </head>
   <body>
         <?php
@@ -32,7 +25,7 @@ tr:not(:first-child)>* { border-left:0; }
             }?>
             <h2> Results for <?= $campos->operon_name; ?> in OPERON </h2>
               <h3>Operon</h3>
-                <table>
+              <TABLE BORDER="5"    WIDTH="50%"   CELLPADDING="4" CELLSPACING="3">
                   <tr>
                       <th> OPERON ID </th> 
                       <th> OPERON Name </th>
@@ -44,7 +37,7 @@ tr:not(:first-child)>* { border-left:0; }
                 </table>
                 <br><br>
                 <h3>Transcription Unit</h3>
-                <table>
+                <TABLE BORDER="5"    WIDTH="50%"   CELLPADDING="4" CELLSPACING="3">
                   <tr>
                       <th>Name</th>
                       <th>Synonym(s)</th>
@@ -64,7 +57,7 @@ tr:not(:first-child)>* { border-left:0; }
                       for ($num_fila = 1;  $num_fila <= $synonyms->num_rows; $num_fila++) {
                         // obtener objeto 
                         $sinonimos = $synonyms->fetch_object();
-                        echo $sinonimos->object_synonym_name. ", ";
+                        echo $sinonimos->object_synonym_name. "<br> ";
                         }
                         ?>
                     </td>
@@ -73,7 +66,7 @@ tr:not(:first-child)>* { border-left:0; }
                       for ($num_fila = 1;  $num_fila <= $genes->num_rows; $num_fila++) {
                         // obtener objeto 
                         $gen = $genes->fetch_object();
-                        echo $gen->gene_name. ", ";
+                        echo $gen->gene_name. "<br> ";
                         }
                     ?>
                     </td>
@@ -81,7 +74,7 @@ tr:not(:first-child)>* { border-left:0; }
                 </table>
                 <br><br>
                 <h3>Promoter</h3>
-                <table>
+                <TABLE BORDER="5"    WIDTH="50%"   CELLPADDING="4" CELLSPACING="3">
                 <tr>
                       <th>Name</th>
                       <th>+1</th>
@@ -105,18 +98,26 @@ tr:not(:first-child)>* { border-left:0; }
                       </table>
                       <br><br>
                       <h3>Terminator</h3>
-                <table>
+                      <TABLE BORDER="5"    WIDTH="50%"   CELLPADDING="4" CELLSPACING="3">
                   <tr>
                     <th>Type</th>
                     <th>Sequence</th>
                   </tr>
                   <tr>
-                    <td><?php $terminator = $mysqli->query("SELECT * FROM TERMINATOR ter JOIN TU_TERMINATOR_LINK tute ON ter.terminator_id = tute.terminator_id JOIN TRANSCRIPTION_UNIT tu ON tute.transcription_unit_id = tu.transcription_unit_id AND tu.operon_id = '" . $campos->operon_id . "'");
-                    for ($num_fila = 1;  $num_fila <= $terminator->num_rows; $num_fila++) {
+                  <?php $terminator = $mysqli->query("SELECT * FROM TERMINATOR ter JOIN TU_TERMINATOR_LINK tute ON ter.terminator_id = tute.terminator_id JOIN TRANSCRIPTION_UNIT tu ON tute.transcription_unit_id = tu.transcription_unit_id AND tu.operon_id = '" . $campos->operon_id . "'");
+                  ?>
+                    <?php if ($terminator->num_rows>0){ ?>
+                    <?php for ($num_fila = 1;  $num_fila <= $terminator->num_rows; $num_fila++) {
                       // obtener objeto 
                       $ter = $terminator->fetch_object();
-                      }echo $ter->terminator_class?></td>
+                      }?>
+                      <td><?= $ter->terminator_class?></td>
                       <td> <?= $ter->terminator_sequence ?> </td>
+                  <?php }
+                  else {
+                    echo "<td> No data </td>";
+                    echo "<td> No data</td>";
+                  } ?>
                   </tr>
                 </table>
             <?php

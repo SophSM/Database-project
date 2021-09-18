@@ -9,18 +9,9 @@ Operon-->
 <html>
     <head>
         <title> Results </title>
-      <style>
-        tr { display: block; float: left; }
-th, td { display: block; border: 1px solid black; }
-
-/* border-collapse */
-tr>*:not(:first-child) { border-top: 0; }
-tr:not(:first-child)>* { border-left:0; }
-      </style>
     </head>
   <body>
         <?php
-     
       error_reporting(E_ALL);
       ini_set('display_errors', '1');
       $gene_req = escapeshellcmd( $_GET["question"] );
@@ -36,7 +27,7 @@ tr:not(:first-child)>* { border-left:0; }
             if ($result_gene->num_rows > 0) { ?>
             <h2><?= $gene_req; ?> GENE in Escherichia coli K-12 genome </h2> <br><br>
             <h3>Gene</h3>
-                <table>
+            <TABLE BORDER="5"    WIDTH="50%"   CELLPADDING="4" CELLSPACING="3">
                   <tr>
                       <th> Gene ID </th> 
                       <th> Gene Name </th>
@@ -55,7 +46,7 @@ tr:not(:first-child)>* { border-left:0; }
                       <?php $sinonimos= $mysqli->query("SELECT object_synonym_name FROM OBJECT_SYNONYM g WHERE object_id = '" . $campos->gene_id . "'");
                       for ($num_fila = 1;  $num_fila <= $sinonimos->num_rows; $num_fila++) {
                         $campos2 = $sinonimos->fetch_object();
-                        echo $campos2->object_synonym_name. ", ";
+                        echo $campos2->object_synonym_name. "<br> ";
                       }
                     ?>
                     </td>
@@ -66,7 +57,7 @@ tr:not(:first-child)>* { border-left:0; }
                 </table>
                 <br><br>
             <h3>Product</h3>
-              <table>
+            <TABLE BORDER="5"    WIDTH="50%"   CELLPADDING="4" CELLSPACING="3">
                 <tr>
                     <th> Name </th> 
                     <th>Synonym(s)</th>
@@ -88,7 +79,7 @@ tr:not(:first-child)>* { border-left:0; }
                     <?php $product_synonym= $mysqli->query("SELECT object_synonym_name FROM OBJECT_SYNONYM g WHERE object_id = '" . $campos3->product_id . "'");
                       for ($num_fila = 1;  $num_fila <= $product_synonym->num_rows; $num_fila++) {
                         $campos4 = $product_synonym->fetch_object();
-                        echo $campos4->object_synonym_name. ", ";
+                        echo $campos4->object_synonym_name. "<br> ";
                       }
                     ?>
                   </td>
@@ -100,54 +91,54 @@ tr:not(:first-child)>* { border-left:0; }
               </table>
                 <br><br>
                 <h3>Operon</h3>
-              <table>
-              <tr>
-                    <th> Name </th> 
-                    <th>Operon Arrangement</th>
-              </tr>    
-              <tr>
-                <td>
-                <?php $operon= $mysqli->query("SELECT o.operon_name, o.operon_id FROM OPERON o JOIN TRANSCRIPTION_UNIT t ON o.operon_id=t.operon_id JOIN TU_GENE_LINK tu ON t.transcription_unit_id=tu.transcription_unit_id JOIN GENE g ON tu.gene_id=g.gene_id AND g.gene_id = '" . $campos->gene_id. "'");
+              <TABLE class = "table2" BORDER="5"    WIDTH="50%"   CELLPADDING="4" CELLSPACING="3">
+                <tr>
+                      <th> Name</th>
+                      <th>Operon Arrangement</th>
+                </tr>
+                <tr>
+                  <?php $operon= $mysqli->query("SELECT o.operon_name, o.operon_id FROM OPERON o JOIN TRANSCRIPTION_UNIT t ON o.operon_id=t.operon_id JOIN TU_GENE_LINK tu ON t.transcription_unit_id=tu.transcription_unit_id JOIN GENE g ON tu.gene_id=g.gene_id AND g.gene_id = '" . $campos->gene_id. "'");
                       for ($num_fila = 1;  $num_fila <= $operon->num_rows; $num_fila++) {
                         $campos5 = $operon->fetch_object();
                       }
                 ?>
                   <?php echo '<td> <a href="info_operon.php?question='.$campos5->operon_id.'&Submit=Buscar"> '; ?><?= $campos5->operon_name; ?> </a> </td>
-                </td>
-                <td>
-                  <table>
-                  <tr>
+                  <td>
+                  <TABLE class = "table2" BORDER="5"    WIDTH="100%"   CELLPADDING="4" CELLSPACING="3">
+                    <tr>
                       <th>Transcription unit</th>
                       <th>Promoter</th>
-                  </tr>
-                  <tr>
-                <?php $tu= $mysqli->query("SELECT * FROM TRANSCRIPTION_UNIT WHERE operon_id = '" . $campos5->operon_id. "'");
+                    </tr>
+                    <tr>
+                    <?php $tu= $mysqli->query("SELECT * FROM TRANSCRIPTION_UNIT WHERE operon_id = '" . $campos5->operon_id. "'");
                       for ($num_fila = 1;  $num_fila <= $tu->num_rows; $num_fila++) {
                         $trans_u = $tu->fetch_object();
+                        echo "<tr>";
                         echo "<td>".$trans_u->transcription_unit_name."</td>";
-                      }
+                        
+                        $promoter = $mysqli->query("SELECT * FROM PROMOTER WHERE promoter_id = '" . $trans_u->promoter_id. "'");
+                        if ($promoter->num_rows >0){
+                          for ($numero_fila = 1;  $numero_fila <= $promoter->num_rows; $numero_fila++) {
+                            $promoter_tab = $promoter->fetch_object();
+                          } 
+                          echo "<td>".$promoter_tab->promoter_name."</td>";
+                        }
+                        echo "</tr>";
+                    }
                      ?> 
-                      <?php $promoter = $mysqli->query("SELECT * FROM PROMOTER WHERE promoter_id = '" . $trans_u->promoter_id. "'"); 
-                       for ($num_fila = 1;  $num_fila <= $promoter->num_rows; $num_fila++) {
-                        $promoter_tab = $promoter->fetch_object();
-                        echo "<td>". $promoter_tab -> promoter_name ."</td>";
-                      }?>
-                  </tr>
-                  </table>
-                </td>
-              </tr>
+                    </tr>
+                  </TABLE>
+                  </td>
+                </tr>
 
-
-
-
-              </table>
+</TABLE>
             <?php
               $result_gene->close();
               $sinonimos->close();
               $product->close();
               $product_synonym->close();
               $operon->close();
-              $tu->close();
+              $tu->close();;
               $promoter->close();
             }?>
     </body>
