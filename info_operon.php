@@ -46,19 +46,24 @@
                   <tr>
                     <td>
                       <?php $trans_u = $mysqli->query("SELECT * FROM TRANSCRIPTION_UNIT g WHERE operon_ID = '" . $campos->operon_id . "'"); 
+                      $tu = array();
                       for ($num_fila = 1;  $num_fila <= $trans_u->num_rows; $num_fila++) {
                         // obtener objeto 
                         $transcription = $trans_u->fetch_object();
+                        array_push($tu, $transcription->transcription_unit_id);
                         }
-                        echo $transcription->transcription_unit_name;?>
+                        echo $transcription->transcription_unit_name; ?>
                     </td>
                     <td>
-                    <?php $synonyms = $mysqli->query("SELECT * FROM OBJECT_SYNONYM g WHERE object_ID = '" . $transcription->transcription_unit_id . "'"); 
+                    <?php 
+                    $filas = count($tu);
+                    for ($i = 0; $i<$filas; $i++){
+                      $synonyms = $mysqli->query("SELECT * FROM OBJECT_SYNONYM g WHERE object_ID = '" . $tu[$i] . "'");
                       for ($num_fila = 1;  $num_fila <= $synonyms->num_rows; $num_fila++) {
-                        // obtener objeto 
                         $sinonimos = $synonyms->fetch_object();
-                        echo $sinonimos->object_synonym_name. "<br> ";
-                        }
+                        echo $sinonimos->object_synonym_name."<br>";
+                      }
+                    }
                         ?>
                     </td>
                     <td>
@@ -83,7 +88,9 @@
                 </tr>
                 <tr>
                       <td>
-                      <?php $promoter= $mysqli->query("SELECT * FROM PROMOTER pro JOIN TRANSCRIPTION_UNIT tu ON pro.promoter_id=tu.promoter_id AND tu.operon_id= '" . $campos->operon_id . "'");
+                      <?php 
+                      $pro = array();
+                      $promoter= $mysqli->query("SELECT * FROM PROMOTER pro JOIN TRANSCRIPTION_UNIT tu ON pro.promoter_id=tu.promoter_id AND tu.operon_id= '" . $campos->operon_id . "'");
                       for ($num_fila = 1;  $num_fila <= $promoter->num_rows; $num_fila++) {
                         // obtener objeto 
                         $promo = $promoter->fetch_object();
@@ -91,9 +98,37 @@
                         echo $promo->promoter_name;
                       ?>
                       </td>
-                      <td><?= $promo->pos_1 ?></td>
-                      <td><?=$promo->sigma_factor ?></td>
-                      <td><?= $promo->promoter_sequence?></td>
+                      <td>
+                      <?php
+                      $promoter= $mysqli->query("SELECT * FROM PROMOTER pro JOIN TRANSCRIPTION_UNIT tu ON pro.promoter_id=tu.promoter_id AND tu.operon_id= '" . $campos->operon_id . "'");
+                      for ($numero_fila = 1;  $numero_fila <= $promoter->num_rows; $numero_fila++) {
+                      $promo2 = $promoter->fetch_object();
+                      if (!(is_NULL($promo2->pos_1)));
+                      echo $promo2->pos_1;
+                      break;
+                      }
+                      ?>
+                      </td>
+                      <td>
+                      <?php
+                      
+                      for ($numero_fila = 1;  $numero_fila <= $promoter->num_rows; $numero_fila++) {
+                      if (!(is_NULL($promo2->sigma_factor)));
+                      echo $promo2->sigma_factor;
+                      break;
+                      }
+                      ?>
+                      </td>
+                      <td>
+                      <?php
+                      
+                      for ($numero_fila = 1;  $numero_fila <= $promoter->num_rows; $numero_fila++) {
+                      if (!(is_NULL($promo2->promoter_sequence)));
+                      echo $promo2->promoter_sequence;
+                      break;
+                      }
+                      ?>
+                      </td>
                 </tr>
                       </table>
                       <br><br>
