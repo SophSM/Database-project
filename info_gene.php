@@ -8,7 +8,7 @@ Producto
 Operon-->
 <html>
     <head>
-        <title> Results </title>
+        <title> Gene Results </title>
     </head>
   <body>
         <?php
@@ -114,17 +114,26 @@ Operon-->
                       for ($num_fila = 1;  $num_fila <= $tu->num_rows; $num_fila++) {
                         $trans_u = $tu->fetch_object();
                         echo "<tr>";
+                        if (!(is_null($trans_u->transcription_unit_name))){
                         echo "<td>".$trans_u->transcription_unit_name."</td>";
-                        
+                        }
+                        else {
+                          echo "<td> not known transcription unit </td>";
+                        }
                         $promoter = $mysqli->query("SELECT * FROM PROMOTER WHERE promoter_id = '" . $trans_u->promoter_id. "'");
                         if ($promoter->num_rows >0){
                           for ($numero_fila = 1;  $numero_fila <= $promoter->num_rows; $numero_fila++) {
                             $promoter_tab = $promoter->fetch_object();
                           } 
                           echo "<td>".$promoter_tab->promoter_name."</td>";
+                          
+                        }
+                        else{
+                          echo "<td> not known promoters</td>"; 
                         }
                         echo "</tr>";
                     }
+                  
                      ?> 
                     </tr>
                   </TABLE>

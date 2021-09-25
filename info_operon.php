@@ -1,6 +1,6 @@
 <html>
     <head>
-        <title> Results </title>
+        <title> Operon Results </title>
 
     </head>
   <body>
@@ -35,36 +35,43 @@
                     <td><?= $campos->operon_name; ?> </td>
                   </tr>
                 </table>
-                <br><br>
-                <h3>Transcription Unit</h3>
-                <TABLE BORDER="5"    WIDTH="50%"   CELLPADDING="4" CELLSPACING="3">
-                  <tr>
-                      <th>Name</th>
-                      <th>Synonym(s)</th>
-                      <th>Gene(s)</th>
-                  </tr>
-                  <tr>
-                    <td>
-                      <?php $trans_u = $mysqli->query("SELECT * FROM TRANSCRIPTION_UNIT g WHERE operon_ID = '" . $campos->operon_id . "'"); 
-                      $tu = array();
-                      for ($num_fila = 1;  $num_fila <= $trans_u->num_rows; $num_fila++) {
-                        // obtener objeto 
-                        $transcription = $trans_u->fetch_object();
-                        array_push($tu, $transcription->transcription_unit_id);
-                        }
-                        echo $transcription->transcription_unit_name; ?>
-                    </td>
-                    <td>
+                  <?php $trans_u = $mysqli->query("SELECT * FROM TRANSCRIPTION_UNIT g WHERE operon_ID = '" . $campos->operon_id . "'"); 
+                  $tu = array();
+                  for ($num_fila = 1;  $num_fila <= $trans_u->num_rows; $num_fila++) {
+                 $transcription = $trans_u->fetch_object();
+                  array_push($tu, $transcription->transcription_unit_id);
+                  }
+                  if (!(is_null($transcription->transcription_unit_name))){?>
+                    <br><br>
+                    <h3>Transcription Unit</h3>
+                    <TABLE BORDER="5"    WIDTH="50%"   CELLPADDING="4" CELLSPACING="3">
+                      <tr>
+                          <th>Name</th>
+                          <th>Synonym(s)</th>
+                          <th>Gene(s)</th>
+                      </tr>
+                      <tr>
+                          <td><?=$transcription->transcription_unit_name?></td>
+                          <td>
                     <?php 
+                    $vacio = 0;
                     $filas = count($tu);
                     for ($i = 0; $i<$filas; $i++){
                       $synonyms = $mysqli->query("SELECT * FROM OBJECT_SYNONYM g WHERE object_ID = '" . $tu[$i] . "'");
+                      if($synonyms->num_rows >0){
                       for ($num_fila = 1;  $num_fila <= $synonyms->num_rows; $num_fila++) {
                         $sinonimos = $synonyms->fetch_object();
                         echo $sinonimos->object_synonym_name."<br>";
                       }
                     }
-                        ?>
+                    else{
+                      $vacio ++;
+                    }
+                    }
+                    if ($vacio ==$filas){
+                    echo "not known synonyms";
+                    }
+                    ?>
                     </td>
                     <td>
                     <?php $genes = $mysqli->query("SELECT * FROM GENE g JOIN TU_GENE_LINK tul ON g.gene_id = tul.gene_id JOIN TRANSCRIPTION_UNIT tu ON tul.transcription_unit_id = tu.transcription_unit_id AND tu.transcription_unit_ID = '" . $transcription->transcription_unit_id . "'"); 
@@ -72,11 +79,20 @@
                         // obtener objeto 
                         $gen = $genes->fetch_object();
                         echo $gen->gene_name. "<br> ";
-                        }
-                    ?>
-                    </td>
-                  </tr>
-                </table>
+                        }?>
+                      </td>
+                    </tr>
+                    </table>
+                    <?php 
+               $trans_u->close();
+              $synonyms->close();
+              $genes->close();
+                 }?>
+                  
+                  <?php 
+                      $pro = array();
+                      $promoter= $mysqli->query("SELECT * FROM PROMOTER pro JOIN TRANSCRIPTION_UNIT tu ON pro.promoter_id=tu.promoter_id AND tu.operon_id= '" . $campos->operon_id . "'");
+                if($promoter->num_rows>0) {?>
                 <br><br>
                 <h3>Promoter</h3>
                 <TABLE BORDER="5"    WIDTH="50%"   CELLPADDING="4" CELLSPACING="3">
@@ -87,25 +103,34 @@
                       <th>Sequence</th>
                 </tr>
                 <tr>
-                      <td>
                       <?php 
-                      $pro = array();
-                      $promoter= $mysqli->query("SELECT * FROM PROMOTER pro JOIN TRANSCRIPTION_UNIT tu ON pro.promoter_id=tu.promoter_id AND tu.operon_id= '" . $campos->operon_id . "'");
                       for ($num_fila = 1;  $num_fila <= $promoter->num_rows; $num_fila++) {
                         // obtener objeto 
                         $promo = $promoter->fetch_object();
                         }
-                        echo $promo->promoter_name;
+                        echo "<td>".$promo->promoter_name."</td>";
                       ?>
-                      </td>
-                      <td>
                       <?php
                       $promoter= $mysqli->query("SELECT * FROM PROMOTER pro JOIN TRANSCRIPTION_UNIT tu ON pro.promoter_id=tu.promoter_id AND tu.operon_id= '" . $campos->operon_id . "'");
+                      
                       for ($numero_fila = 1;  $numero_fila <= $promoter->num_rows; $numero_fila++) {
                       $promo2 = $promoter->fetch_object();
-                      if (!(is_NULL($promo2->pos_1)));
-                      echo $promo2->pos_1;
-                      break;
+                      if (!(is_NULL($promo2->pos_1))){ ?>
+                      <td><?= $promo2->pos_1;?></td>
+                      <?php break;
+                      }
+                      }
+                      ?>
+                      <td>
+                      <?php
+                      $anterior = 'a';
+                      for ($numero_fila = 1;  $numero_fila <= $promoter->num_rows; $numero_fila++) {
+                      if (!(is_NULL($promo2->sigma_factor))){
+                        if($promo2->sigma_factor != $anterior);
+                        echo $promo2->sigma_factor;
+                        $anterior = $promo2->sigma_factor.'<br>';
+                        break;
+                      }
                       }
                       ?>
                       </td>
@@ -113,55 +138,43 @@
                       <?php
                       
                       for ($numero_fila = 1;  $numero_fila <= $promoter->num_rows; $numero_fila++) {
-                      if (!(is_NULL($promo2->sigma_factor)));
-                      echo $promo2->sigma_factor;
-                      break;
-                      }
-                      ?>
-                      </td>
-                      <td>
-                      <?php
-                      
-                      for ($numero_fila = 1;  $numero_fila <= $promoter->num_rows; $numero_fila++) {
-                      if (!(is_NULL($promo2->promoter_sequence)));
+                      if (!(is_NULL($promo2->promoter_sequence))){
                       echo $promo2->promoter_sequence;
                       break;
+                      }
                       }
                       ?>
                       </td>
                 </tr>
                       </table>
+
+                  <?php 
+                    $promoter->close();
+                    } ?>
+                  <?php $terminator = $mysqli->query("SELECT * FROM TERMINATOR ter JOIN TU_TERMINATOR_LINK tute ON ter.terminator_id = tute.terminator_id JOIN TRANSCRIPTION_UNIT tu ON tute.transcription_unit_id = tu.transcription_unit_id AND tu.operon_id = '" . $campos->operon_id . "'");
+                  if ($terminator->num_rows>0){?>
                       <br><br>
                       <h3>Terminator</h3>
                       <TABLE BORDER="5"    WIDTH="50%"   CELLPADDING="4" CELLSPACING="3">
-                  <tr>
-                    <th>Type</th>
-                    <th>Sequence</th>
-                  </tr>
-                  <tr>
-                  <?php $terminator = $mysqli->query("SELECT * FROM TERMINATOR ter JOIN TU_TERMINATOR_LINK tute ON ter.terminator_id = tute.terminator_id JOIN TRANSCRIPTION_UNIT tu ON tute.transcription_unit_id = tu.transcription_unit_id AND tu.operon_id = '" . $campos->operon_id . "'");
-                  ?>
-                    <?php if ($terminator->num_rows>0){ ?>
-                    <?php for ($num_fila = 1;  $num_fila <= $terminator->num_rows; $num_fila++) {
+                      <tr>
+                          <th>Type</th>
+                          <th>Sequence</th>
+                      </tr>
+                     <tr>
+                     <?php for ($num_fila = 1;  $num_fila <= $terminator->num_rows; $num_fila++) {
                       // obtener objeto 
                       $ter = $terminator->fetch_object();
                       }?>
                       <td><?= $ter->terminator_class?></td>
                       <td> <?= $ter->terminator_sequence ?> </td>
-                  <?php }
-                  else {
-                    echo "<td> No data </td>";
-                    echo "<td> No data</td>";
-                  } ?>
-                  </tr>
+                      </tr>
                 </table>
+                <?php
+                $terminator->close();
+                 }?>
+
             <?php
               $result_operon->close();
-              $trans_u->close();
-              $synonyms->close();
-              $genes->close();
-              $promoter->close();
-              $terminator->close();
             }?>
     </body>
 </html>
