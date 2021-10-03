@@ -1,6 +1,7 @@
 <html>
   <head>
     <title> Consulta DB </title>
+    <link rel="stylesheet" type="text/css" href="/styleSimple3.css" /> 
   </head>
   <body>
 

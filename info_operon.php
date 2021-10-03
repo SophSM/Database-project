@@ -42,24 +42,33 @@
                     $transcription = $trans_u->fetch_object();
                      array_push($tu_array, $transcription->transcription_unit_id);
                      }
+                  $anterior ='';
                   $filas_tu = count($tu_array);
                   if ($filas_tu>0) //hacer las tablas para cada trans_unit
                   {
+                    $numero_de_tu=0;
+                    $numero_de_promoter=0;
+                    $numero_de_terminator=0;
                     for($unidad=0; $unidad<$filas_tu; $unidad++)
-                    { ?>
-                      <h3>
-                        <?php 
-                      $numero_de_tu = $unidad + 1;
-                      echo $numero_de_tu."° Transcription unit";
-                        ?>
-                      </h3>
-                      <table BORDER="5"    WIDTH="50%"   CELLPADDING="4" CELLSPACING="3">
+                    { 
+                      ?>
+                      
                       <?php 
                       $tu_names = $mysqli->query("SELECT * FROM TRANSCRIPTION_UNIT g WHERE transcription_unit_id = '" . $tu_array[$unidad]. "'");
                       for ($num_tu = 1;  $num_tu <= $tu_names->num_rows; $num_tu++) 
                       {
                         $transcription_name = $tu_names->fetch_object();
                       }
+                      if ($transcription_name->transcription_unit_id != $anterior){ ?>
+                        <h3>
+                        <?php 
+                      $numero_de_tu = $numero_de_tu + 1;
+                      echo $numero_de_tu."° Transcription unit";
+                        ?>
+                      </h3>
+
+                      <table BORDER="5"    WIDTH="50%"   CELLPADDING="4" CELLSPACING="3">
+                      <?php
                       $synonyms = $mysqli->query("SELECT * FROM OBJECT_SYNONYM g WHERE object_ID = '" . $tu_array[$unidad] . "'");
                       ?>
                       <tr>
@@ -126,7 +135,7 @@
                       </table> <!-- fin de tabla de transcription_unit -->
 
                       <?php //Para tabla de promoter
-                      $numero_de_promoter = $unidad + 1;
+                      $numero_de_promoter = $numero_de_promoter + 1;
                       $promoter = $mysqli->query("SELECT * FROM PROMOTER pro JOIN TRANSCRIPTION_UNIT tu ON pro.promoter_id=tu.promoter_id AND tu.transcription_unit_id = '" . $tu_array[$unidad] . "'");
                       if ($promoter->num_rows>0)
                         { 
@@ -184,7 +193,7 @@
                         <?php }
                         $promoter->close(); //if de promoter  ?>
                       <?php //Tabla para terminator(s)
-                      $numero_de_terminator = $unidad + 1;
+                      $numero_de_terminator = $numero_de_terminator + 1;
                         $terminator = $mysqli->query("SELECT * FROM TERMINATOR ter JOIN TU_TERMINATOR_LINK tute ON ter.terminator_id = tute.terminator_id JOIN TRANSCRIPTION_UNIT tu ON tute.transcription_unit_id = tu.transcription_unit_id AND tu.transcription_unit_id = '" . $tu_array[$unidad] . "'");
                         if ($terminator->num_rows>0)
                         {?>
@@ -217,12 +226,16 @@
                               ?>
                             </tr>
                           </table>
-                        <?php 
+                        <?php
+                        
                       } 
                       $terminator->close();//if de terminator?>
                       <br><br>
                       <br><br>
-                    <?php }//for grande?> 
+                    <?php
+                    $anterior = $transcription_name->transcription_unit_id; 
+                    }
+                  }//for grande?> 
                     <br><br>
           <?php $trans_u ->close();
         $tu_names->close(); 
