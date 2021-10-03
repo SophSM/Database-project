@@ -9,8 +9,21 @@ Operon-->
 <html>
     <head>
         <title> Gene Results </title>
+        <link rel="stylesheet" type="text/css" href="/PROYECTO/mystyle.css">
+        <form id="form" name="form" method="get" action="resultados.php">
+        
+        <nav class="topnav">
+        <div class="logo">
+        <a href="/PROYECTO/home.php"><img src="/PROYECTO/peppa.png"/></a>
+        </div>
+          <b><a href="/PROYECTO/home.php">Home</a></b>
+          <b><a href="/PROYECTO/about.php">About</a></b>
+          <b><a class="active" href="/PROYECTO/formularioDB.php">Search</a></b>
+          <input name="search" type="text" id="search" size="15" placeholder="Search..."/>
+        </nav>
     </head>
   <body>
+    <br><br>
         <?php
       error_reporting(E_ALL);
       ini_set('display_errors', '1');
@@ -27,14 +40,16 @@ Operon-->
             if ($result_gene->num_rows > 0) { ?>
             <h2><?= $gene_req; ?> GENE in Escherichia coli K-12 genome </h2> <br><br>
             <h3>Gene</h3>
-            <TABLE BORDER="5"    WIDTH="50%"   CELLPADDING="4" CELLSPACING="3">
+            <TABLE class="custom-table">
+              <thead>
                   <tr>
                       <th> Gene ID </th> 
                       <th> Gene Name </th>
                       <th>Synonym(s)</th>
                       <th>Strand</th>
                       <th>Sequence</th>
-                  </tr>    
+                  </tr> 
+              </thead>
                   <?php  for ($num_fila = 1;  $num_fila <= $result_gene->num_rows; $num_fila++) {
                   // obtener objeto 
                   $campos = $result_gene->fetch_object();
@@ -57,7 +72,8 @@ Operon-->
                 </table>
                 <br><br>
             <h3>Product</h3>
-            <TABLE BORDER="5"    WIDTH="50%"   CELLPADDING="4" CELLSPACING="3">
+            <TABLE class="custom-table">
+              <thead>
                 <tr>
                     <th> Name </th> 
                     <th>Synonym(s)</th>
@@ -65,7 +81,8 @@ Operon-->
                     <th>Cellular Location</th>
                     <th>Molecular weight</th>
                     <th>Isoelectric point</th>
-                </tr>    
+                </tr>
+              </thead>
                 <tr>
                   <td>
                     <?php $product= $mysqli->query("SELECT * FROM PRODUCT g WHERE product_id IN(SELECT product_id FROM GENE_PRODUCT_LINK g WHERE gene_id= '" . $campos->gene_id. "')");
@@ -91,24 +108,30 @@ Operon-->
               </table>
                 <br><br>
                 <h3>Operon</h3>
-              <TABLE class = "table2" BORDER="5"    WIDTH="50%"   CELLPADDING="4" CELLSPACING="3">
+              <TABLE class = "custom-table">
+                <thead>
                 <tr>
                       <th> Name</th>
                       <th>Operon Arrangement</th>
                 </tr>
+                </thead>
+                <tbody>
                 <tr>
+                    
                   <?php $operon= $mysqli->query("SELECT o.operon_name, o.operon_id FROM OPERON o JOIN TRANSCRIPTION_UNIT t ON o.operon_id=t.operon_id JOIN TU_GENE_LINK tu ON t.transcription_unit_id=tu.transcription_unit_id JOIN GENE g ON tu.gene_id=g.gene_id AND g.gene_id = '" . $campos->gene_id. "'");
                       for ($num_fila = 1;  $num_fila <= $operon->num_rows; $num_fila++) {
                         $campos5 = $operon->fetch_object();
                       }
-                ?>
+                    ?>
                   <?php echo '<td> <a href="info_operon.php?question='.$campos5->operon_id.'&Submit=Buscar"> '; ?><?= $campos5->operon_name; ?> </a> </td>
                   <td>
-                  <TABLE class = "table2" BORDER="5"    WIDTH="100%"   CELLPADDING="4" CELLSPACING="3">
-                    <tr>
-                      <th>Transcription unit</th>
-                      <th>Promoter</th>
+                  <TABLE class="custom-table">
+                    <thead>
+                    <tr id="Row1">
+                      <th><b>Transcription unit</b></th>
+                      <th><b>Promoter</b></th>
                     </tr>
+                    </thead>
                     <tr>
                     <?php $tu= $mysqli->query("SELECT * FROM TRANSCRIPTION_UNIT WHERE operon_id = '" . $campos5->operon_id. "'");
                       for ($num_fila = 1;  $num_fila <= $tu->num_rows; $num_fila++) {
@@ -135,6 +158,7 @@ Operon-->
                     }
                   
                      ?> 
+                     <tbody>
                     </tr>
                   </TABLE>
                   </td>

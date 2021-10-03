@@ -1,8 +1,21 @@
 <html>
 <head>
         <title> Results </title>
+        <link rel="stylesheet" type="text/css" href="/PROYECTO/mystyle.css">
+        <form id="form" name="form" method="get" action="resultados.php">
+        
+        <nav class="topnav">
+        <div class="logo">
+        <a href="/PROYECTO/home.php"><img src="/PROYECTO/peppa.png"/></a>
+        </div>
+          <b><a href="/PROYECTO/home.php">Home</a></b>
+          <b><a href="/PROYECTO/about.php">About</a></b>
+          <b><a class="active" href="/PROYECTO/formularioDB.php">Search</a></b>
+          <input name="search" type="text" id="search" size="15" placeholder="Search..."/>
+        </nav>
     </head>
     <body>
+      <br><br>
         <?php
         error_reporting(E_ALL);
         ini_set('display_errors', '1');
@@ -21,7 +34,7 @@
             <?php 
             if ($result_gene->num_rows > 0) { ?>
             <h2> Results for <?= $gene_req; ?> in GENE </h2> <br><br>
-                <table border="1">
+                <table class='custom-table'>
                 <thead>
                   <tr>
                       <th> GENE ID </th> 
@@ -45,10 +58,10 @@
             <?php } ?>
             <?php if ($result_operon->num_rows > 0) { ?>
             <h2> Results for <?= $gene_req; ?> in OPERON </h2> <br><br>
-                <table border="1">
+                <table class='custom-table'>
                 <thead>
                   <tr>
-                      <th> OEPRON ID </th> 
+                      <th> OPERON ID </th> 
                       <th> OPERON Name </th>
                   </tr>    
                   </thead>

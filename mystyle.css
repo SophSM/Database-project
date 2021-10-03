@@ -1,0 +1,126 @@
+body {
+    font-family: "Roboto", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    background-color: #ffffff;
+    font-weight: 300; 
+    color:#ed7966;
+    text-align: center;
+}
+/*syle of top navigation bar */
+.topnav {
+    font-family: "Roboto", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    overflow: hidden;
+    background-color: #303179 /*color barra nav*/;
+    border-radius: 10px;
+    padding: 1px 1px;
+
+}
+.topnav a {
+    float: left;
+    display: block;
+    color: #ffffff;
+    text-align: center;
+    padding: 5px 36px;
+    text-decoration: none;
+    font-size: 17px;
+    margin-top: 8px;
+    margin-bottom: 1px;
+    
+  }
+/* Change the color of links on hover */
+.topnav a:hover {
+    color: #ed7966;
+  }
+  
+  /* Style the "active" element to highlight the current page */
+  .topnav a.active {
+    color: #ed7966;
+    font-size: 17px;
+  }
+/**/
+.topnav input[type=text] {
+    float:right;
+    padding: 6px;
+    border: none;
+    background: #ffffff;
+    margin-top: 10px;
+    margin-right: 30px;
+    margin-left: 0px;
+    font-size: 17px;
+    vertical-align: middle;
+    border-radius: 25px;
+}
+.logo img{
+    height: 36px;
+    width: 36px;
+    float: left;
+    /* if you want it vertically middle of the navbar. */
+}
+/* When the screen is less than 600px wide, stack the links and the search field vertically instead of horizontally */
+/*@media screen and (max-width: 600px) {
+    .topnav a, .topnav input[type=text] {
+        float: none;
+        display: block;
+    }
+    .topnav input[type=text] {
+      border: 1px solid #ccc;
+
+    }
+  }
+*/
+
+/**/
+h1, h2, h3, h4, h5, h6,
+.h1, .h2, .h3, .h4, .h5, .h6 {
+    font-family: "Roboto", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"; 
+    align-items: center;}
+
+a {
+    -webkit-transition: .3s all ease;
+    -o-transition: .3s all ease;
+    transition: .3s all ease; }
+    a, a:hover {
+    text-decoration: none !important; }
+.content {
+    padding: 7rem 0; }
+    h2 {
+        text-align: center;
+        font-size: 20px;
+        color: #ed7966; /*color encabezados*/ }
+
+.custom-table {
+    min-width: 800px; 
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 10px;}
+    .custom-table tr#Row1{background-color: #303179;}
+    .custom-table thead tr, .custom-table thead th {
+        background: #303179; /*color header back*/
+        border-top: none;
+        border-bottom: none !important;
+        color: #ffffff;  /*color header text */
+    }
+    .custom-table tbody th, .custom-table tbody td {
+            color: #777;
+            font-weight: 400;
+            padding-bottom: 5px;
+            padding-top: 5px;
+            font-weight: 300; 
+            text-align: center;}
+    .custom-table tbody tr th, .custom-table tbody tr td {
+            background: #Fae5df; /*color celda normal*/
+            border: none;
+            -webkit-transition: .3s all ease;
+            -o-transition: .3s all ease;
+            transition: .3s all ease; }
+    .custom-table tbody tr th a, .custom-table tbody tr td a {
+                color: rgb(110, 110, 110); } /*texto celda normal*/
+    .custom-table tbody tr.spacer td {
+            padding: 0 !important;
+            height: 3px;
+            border-radius: 0 !important;
+            background: transparent !important; }
+    .custom-table tbody tr.active th, .custom-table tbody tr.active td, .custom-table tbody tr:hover th, .custom-table tbody tr:hover td {
+            color: #ed7966; /*texto celda hover*/
+            background: #f5cac2; } /*color celda hover*/
+            .custom-table tbody tr.active th a, .custom-table tbody tr.active td a, .custom-table tbody tr:hover th a, .custom-table tbody tr:hover td a {
+            color: #ed7966; }
