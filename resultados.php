@@ -3,18 +3,22 @@
         <title> Results </title>
         <link rel="stylesheet" type="text/css" href="/PROYECTO/mystyle.css">
         <form id="form" name="form" method="get" action="resultados.php">
-        
-        <nav class="topnav">
+    </head>
+    <body>
+    <nav class="topnav">
         <div class="logo">
         <a href="/PROYECTO/home.php"><img src="/PROYECTO/peppa.png"/></a>
         </div>
+        <div class="tabs">
           <b><a href="/PROYECTO/home.php">Home</a></b>
           <b><a href="/PROYECTO/about.php">About</a></b>
           <b><a class="active" href="/PROYECTO/formularioDB.php">Search</a></b>
           <input name="search" type="text" id="search" size="15" placeholder="Search..."/>
+        </div>
         </nav>
-    </head>
-    <body>
+        <header>
+          <img src="/PROYECTO/header_azul.png" alt="header logo">
+        </header>
       <br><br>
         <?php
         error_reporting(E_ALL);
@@ -88,7 +92,11 @@
             } else {
               ?> <br><h1> <?= $gene_req; ?> is not registered in promotedb :( <br><h1>
           <?php }?>
-    
+          <br><br>
+<form>
+        <input id="anterior" type="button" value="Back" onclick="history.back()">
+    </form>
+    <br><br>
         </body>
       </html>
       

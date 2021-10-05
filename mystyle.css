@@ -1,3 +1,8 @@
+
+header img{
+    height: 30%;
+    width: 100%;
+}
 body {
     font-family: "Roboto", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
     background-color: #ffffff;
@@ -10,7 +15,7 @@ body {
     font-family: "Roboto", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
     overflow: hidden;
     background-color: #303179 /*color barra nav*/;
-    border-radius: 10px;
+    border-radius: 0px;
     padding: 1px 1px;
 
 }
@@ -29,6 +34,7 @@ body {
 /* Change the color of links on hover */
 .topnav a:hover {
     color: #ed7966;
+    transition: all 0.2s linear;
   }
   
   /* Style the "active" element to highlight the current page */
@@ -36,6 +42,18 @@ body {
     color: #ed7966;
     font-size: 17px;
   }
+  .tabs a::after {
+    content: '';
+    display: block;
+    width: 0;
+    height: 2px;
+    background: #ed7966; /*linea cuando hover*/
+    transition: width .4s;
+}
+.tabs a:hover::after {
+    width: 100%;
+    transition: width .3s;
+}
 /**/
 .topnav input[type=text] {
     float:right;
@@ -49,12 +67,17 @@ body {
     vertical-align: middle;
     border-radius: 25px;
 }
+.topnav input::placeholder
+{color:#ed7966;
+font-size:17px;}
 .logo img{
     height: 36px;
     width: 36px;
     float: left;
     /* if you want it vertically middle of the navbar. */
 }
+.buscador input::placeholder{color:#303179;
+font-size: 14px;}
 /* When the screen is less than 600px wide, stack the links and the search field vertically instead of horizontally */
 /*@media screen and (max-width: 600px) {
     .topnav a, .topnav input[type=text] {
@@ -120,7 +143,7 @@ a {
             background: transparent !important; }
     .custom-table tbody tr.active th, .custom-table tbody tr.active td, .custom-table tbody tr:hover th, .custom-table tbody tr:hover td {
             color: #ed7966; /*texto celda hover*/
-            background: #f5cac2; } /*color celda hover*/
+            background: #ed7966; } /*color celda hover*/
             .custom-table tbody tr.active th a, .custom-table tbody tr.active td a, .custom-table tbody tr:hover th a, .custom-table tbody tr:hover td a {
             color: #ed7966; }
 
@@ -203,3 +226,48 @@ a {
         background: #ed7966; } /*color celda hover*/
         .custom-table tbody tr.active th a, .custom-table tbody tr.active td a, .custom-table tbody tr:hover th a, .custom-table tbody tr:hover td a {
         color: #ffff; }
+.button{
+    background-color: #303179;
+    color:white;
+    height: 30px;
+    border:none;
+    border-radius: 5px;
+    font-size: 15px;
+}
+#anterior{
+        background-color: #303179;
+        float:left;
+        margin-left: 10px;
+        border: none;
+        border-radius: 5px;
+        color: white;
+        height: 30px;
+        padding: 3px 5px;
+        text-align: center;
+        text-decoration: none;
+        font-size: 17px;}
+#anterior:hover{
+    background-color: #ed7966; 
+        color: white;
+        transition: .3s;
+}
+#anterior::after{transition: .3s;}
+.button:hover {
+        background-color: #ed7966;
+        color: white;
+        transition: .3s;
+        }
+.button::after{transition: .3s}
+.formulario input[type=text] {
+            float:inline-start;
+            padding: 6px;
+            border: none;
+            background: #Fae5df;
+            margin-top: 0px;
+            margin-right: 00px;
+            margin-left: 0px;
+            font-size: 17px;
+            height: 40px;
+            vertical-align: middle;
+            border-radius: 5px;
+}
