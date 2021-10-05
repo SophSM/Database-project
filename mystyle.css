@@ -92,7 +92,6 @@ a {
     margin-left: auto;
     margin-right: auto;
     border-radius: 10px;}
-    .custom-table tr#Row1{background-color: #303179;}
     .custom-table thead tr, .custom-table thead th {
         background: #303179; /*color header back*/
         border-top: none;
@@ -124,3 +123,83 @@ a {
             background: #f5cac2; } /*color celda hover*/
             .custom-table tbody tr.active th a, .custom-table tbody tr.active td a, .custom-table tbody tr:hover th a, .custom-table tbody tr:hover td a {
             color: #ed7966; }
+
+
+/*tablas sin hover*/
+.custom-table2 {
+    min-width: 800px; 
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 10px;}
+    .custom-table2 thead tr, .custom-table2 thead th {
+        background: #303179; /*color header back*/
+        border-top: none;
+        border-bottom: none !important;
+        color: #ffffff;  /*color header text */
+    }
+    .custom-table2 tbody th, .custom-table2 tbody td {
+            color: #777;
+            font-weight: 400;
+            padding-bottom: 5px;
+            padding-top: 5px;
+            font-weight: 300; 
+            text-align: center;}
+    .custom-table2 tbody tr th, .custom-table2 tbody tr td {
+            background: #Fae5df; /*color celda normal*/
+            border: none;
+            -webkit-transition: .3s all ease;
+            -o-transition: .3s all ease;
+            transition: .3s all ease; }
+    .custom-table2 tbody tr th a, .custom-table2 tbody tr td a {
+                color: rgb(110, 110, 110); } /*texto celda normal*/
+    .custom-table2 tbody tr.spacer td {
+            padding: 0 !important;
+            height: 3px;
+            border-radius: 0 !important;
+            background: transparent !important; }
+    .custom-table2 tbody tr.active th, .custom-table2 tbody tr.active td, .custom-table2 tbody tr:hover th, .custom-table2 tbody tr:hover td {
+            color: #777; /*texto celda hover*/
+            background: #Fae5df; } /*color celda hover*/
+            .custom-table tbody tr.active th a, .custom-table tbody tr.active td a, .custom-table tbody tr:hover th a, .custom-table tbody tr:hover td a {
+            color: #777; }
+.custom-table2 a{text-decoration: none;
+    border-bottom:1px solid #ed7966}
+.custom-table2 a:link{
+    color:#ed7966;
+    text-decoration: underline;
+}
+.custom-table2 a:hover{color:#303179;
+    border-bottom:1px solid #303179}
+#product tbody th, #product tbody td{
+    color: #777;
+    font-weight: 400;
+    padding-bottom: 5px;
+    padding-top: 5px;
+    padding-left: 30px;
+    padding-right: 30px;
+    font-weight: 300; 
+    text-align: center;
+}
+.custom-table3 {
+    min-width: 800px; 
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 10px;}
+.custom-table3 thead tr, .custom-table3 thead th {
+        background: #303179; /*color header back*/
+        border-top: none;
+        border-bottom: none !important;
+        color: #303179;  /*color header text */
+}
+.custom-table3 tbody tr th, .custom-table3 tbody tr td {
+    background: #f7b6a5; /*color celda normal*/
+    color: #777;
+    border: none;
+    -webkit-transition: .3s all ease;
+    -o-transition: .3s all ease;
+    transition: .3s all ease; }
+    .custom-table3 tbody tr.active th, .custom-table3 tbody tr.active td, .custom-table3 tbody tr:hover th, .custom-table3 tbody tr:hover td {
+        color: #ffff; /*texto celda hover*/
+        background: #ed7966; } /*color celda hover*/
+        .custom-table tbody tr.active th a, .custom-table tbody tr.active td a, .custom-table tbody tr:hover th a, .custom-table tbody tr:hover td a {
+        color: #ffff; }

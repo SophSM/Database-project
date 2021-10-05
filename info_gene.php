@@ -40,7 +40,7 @@ Operon-->
             if ($result_gene->num_rows > 0) { ?>
             <h2><?= $gene_req; ?> GENE in Escherichia coli K-12 genome </h2> <br><br>
             <h3>Gene</h3>
-            <TABLE class="custom-table">
+            <TABLE class="custom-table2">
               <thead>
                   <tr>
                       <th> Gene ID </th> 
@@ -66,13 +66,16 @@ Operon-->
                     ?>
                     </td>
                     <td><?= $campos->gene_strand;?> </td>
-                    <?php echo '<td> <a href="secuencias.php?sequence='.$campos->gene_id.'&type=gene"> '; ?> Ver secuencia completa </a> </td>
+                    <?php echo '<td> <a href="secuencias.php?sequence='.$campos->gene_id.'&type=gene"> '; ?> See gene sequence </a> </td>
                   </tr>
                   <?php } ?>
                 </table>
                 <br><br>
+            <?php $product= $mysqli->query("SELECT * FROM PRODUCT g WHERE product_id IN(SELECT product_id FROM GENE_PRODUCT_LINK g WHERE gene_id= '" . $campos->gene_id. "')");
+            if ($product->num_rows>0){
+            ?>
             <h3>Product</h3>
-            <TABLE class="custom-table">
+            <TABLE class="custom-table2" id="product">
               <thead>
                 <tr>
                     <th> Name </th> 
@@ -85,12 +88,11 @@ Operon-->
               </thead>
                 <tr>
                   <td>
-                    <?php $product= $mysqli->query("SELECT * FROM PRODUCT g WHERE product_id IN(SELECT product_id FROM GENE_PRODUCT_LINK g WHERE gene_id= '" . $campos->gene_id. "')");
-                      for ($num_fila = 1;  $num_fila <= $product->num_rows; $num_fila++) {
+                  <?php for ($num_fila = 1;  $num_fila <= $product->num_rows; $num_fila++) {
                         $campos3 = $product->fetch_object();
                         echo $campos3->product_name;
                       }
-                    ?>
+                      ?>
                   </td>
                   <td>
                     <?php $product_synonym= $mysqli->query("SELECT object_synonym_name FROM OBJECT_SYNONYM g WHERE object_id = '" . $campos3->product_id . "'");
@@ -100,15 +102,18 @@ Operon-->
                       }
                     ?>
                   </td>
-                  <?php echo '<td> <a href="secuencias.php?sequence='.$campos3->product_id.'&type=product"> '; ?> Ver secuencia de aminoacidos completa </a> </td>
+                  <?php echo '<td> <a href="secuencias.php?sequence='.$campos3->product_id.'&type=product"> '; ?> See aminoacid sequence </a> </td>
                   <td><?php echo $campos3->location ?></td>
                   <td><?php echo $campos3->molecular_weigth?></td>
                   <td><?php echo $campos3->isoelectric_point?></td>
                 </tr>
               </table>
                 <br><br>
+                    <?php 
+                  $product_synonym->close();
+                  } ?>
                 <h3>Operon</h3>
-              <TABLE class = "custom-table">
+              <TABLE class = "custom-table2">
                 <thead>
                 <tr>
                       <th> Name</th>
@@ -125,13 +130,14 @@ Operon-->
                     ?>
                   <?php echo '<td> <a href="info_operon.php?question='.$campos5->operon_id.'&Submit=Buscar"> '; ?><?= $campos5->operon_name; ?> </a> </td>
                   <td>
-                  <TABLE class="custom-table">
+                  <TABLE class="custom-table3">
                     <thead>
-                    <tr id="Row1">
+                    <tr>
                       <th><b>Transcription unit</b></th>
                       <th><b>Promoter</b></th>
                     </tr>
                     </thead>
+                    <tbody>
                     <tr>
                     <?php $tu= $mysqli->query("SELECT * FROM TRANSCRIPTION_UNIT WHERE operon_id = '" . $campos5->operon_id. "'");
                       for ($num_fila = 1;  $num_fila <= $tu->num_rows; $num_fila++) {
@@ -158,7 +164,7 @@ Operon-->
                     }
                   
                      ?> 
-                     <tbody>
+                     </tbody>
                     </tr>
                   </TABLE>
                   </td>
@@ -169,7 +175,6 @@ Operon-->
               $result_gene->close();
               $sinonimos->close();
               $product->close();
-              $product_synonym->close();
               $operon->close();
               $tu->close();;
               $promoter->close();
