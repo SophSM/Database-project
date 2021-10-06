@@ -191,6 +191,9 @@ a {
     color:#ed7966;
     text-decoration: underline;
 }
+.head{
+    background:#303179
+}
 .custom-table2 a:hover{color:#303179;
     border-bottom:1px solid #303179}
 #product tbody th, #product tbody td{

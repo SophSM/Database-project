@@ -1,9 +1,24 @@
 <html>
     <head>
         <title> Operon Results </title>
-
+        <link rel="stylesheet" type="text/css" href="/PROYECTO/mystyle.css">
     </head>
   <body>
+  <nav class="topnav">
+        <div class="logo">
+        <a href="/PROYECTO/home.php"><img src="/PROYECTO/peppa.png"/></a>
+        </div>
+        <div class="tabs">
+          <b><a href="/PROYECTO/home.php">Home</a></b>
+          <b><a href="/PROYECTO/about.php">About</a></b>
+          <b><a class="active" href="/PROYECTO/formularioDB.php">Search</a></b>
+          <input name="search" type="text" id="search" size="15" placeholder="Search..."/>
+        </div>
+        </nav>
+        <header>
+          <img src="/PROYECTO/header_azul.png" alt="header logo">
+        </header>
+    <br><br>
         <?php
      
       error_reporting(E_ALL);
@@ -25,15 +40,19 @@
             }?>
             <h2> Results for <?= $campos->operon_name; ?> in OPERON </h2>
               <h3>Operon</h3>
-              <TABLE BORDER="5"    WIDTH="50%"   CELLPADDING="4" CELLSPACING="3">
+              <TABLE class="custom-table2">
+                <thead>
                   <tr>
-                      <th> OPERON ID </th> 
-                      <th> OPERON Name </th>
-                  </tr>    
+                      <th class="head"> OPERON ID </th> 
+                      <th class="head"> OPERON Name </th>
+                  </tr>
+                    </thead>
+                  <tbody>
                   <tr>
                     <td><?= $campos->operon_id;?> </td>
                     <td><?= $campos->operon_name; ?> </td>
                   </tr>
+                  </tbody>
                 </table>
                   <?php //primero checar si tiene transcription_unit
                   $trans_u = $mysqli->query("SELECT * FROM TRANSCRIPTION_UNIT g WHERE operon_ID = '" . $campos->operon_id . "'");
@@ -67,24 +86,26 @@
                         ?>
                       </h3>
 
-                      <table BORDER="5"    WIDTH="50%"   CELLPADDING="4" CELLSPACING="3">
+                      <table class="custom-table2">
                       <?php
                       $synonyms = $mysqli->query("SELECT * FROM OBJECT_SYNONYM g WHERE object_ID = '" . $tu_array[$unidad] . "'");
                       ?>
+                      <thead>
                       <tr>
-                        <th>Name</th>
-                        <th>Gene(s)</th>
+                        <th class="head">Name</th>
+                        <th class = "head">Gene(s)</th>
                         <?php
                         if ($synonyms->num_rows>0)
                         {
-                          echo "<th> Synonyms(s)</th>";
+                          echo "<th class='head'> Synonyms(s)</th>";
                         } ?>
                         <?php
                         if (!(is_null($transcription_name->transcription_unit_note)))
                         {
-                          echo "<th> Note(s)</th>";
+                          echo "<th class='head'> Note(s)</th>";
                         } ?>
                       </tr>
+                      </thead>
                       <tr>
                         <?php //para nombre
                         if (!(is_null($transcription_name->transcription_unit_name)))
@@ -147,24 +168,26 @@
                             ?>
                             <h3>
                             <?php echo $numero_de_promoter."° Promoter"; ?></h3>
-                            <table BORDER="5"    WIDTH="50%"   CELLPADDING="4" CELLSPACING="3">
+                            <table class="custom-table2">
+                            <thead>
                             <tr>
                             <th>Name</th>
                             <?php 
                             if(!(is_null($promo->pos_1)))
                             {
-                            echo "<th> +1 </th>";
+                            echo "<th class='head'> +1 </th>";
                             }
                             if(!(is_null($promo->sigma_factor)))
                             {
-                            echo "<th> Sigma factor </th>";
+                            echo "<th class='head'> Sigma factor </th>";
                             }
                             if(!(is_null($promo->promoter_sequence)))
                             {
-                            echo "<th> Sequence </th>";
+                            echo "<th class='head'> Sequence </th>";
                             }
                             ?>
                             </tr>
+                            </thead>
                             <tr>
                             <?php
                             if(!(is_null($promo->promoter_name)))
@@ -198,14 +221,16 @@
                         if ($terminator->num_rows>0)
                         {?>
                           <h3> <?php echo $numero_de_terminator."° Terminator(s)"; ?></h3>
-                          <table BORDER="5"    WIDTH="50%"   CELLPADDING="4" CELLSPACING="3">
+                          <table class="custom-table2">
+                            <thead>
                             <tr>
                           <?php for($num_ter=1; $num_ter<= $terminator->num_rows; $num_ter++)
                           {?>
-                            <th><?= $num_ter."° Type" ?></th>
-                            <th><?= $num_ter."° Sequence" ?></th>
+                            <th class='head'><?= $num_ter."° Type" ?></th>
+                            <th class='head'> <?= $num_ter."° Sequence" ?></th>
                           <?php }?>
                             </tr>
+                            </thead>
                             <tr>
                               <?php 
                               $ter_type_array = array();

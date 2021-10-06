@@ -137,8 +137,8 @@ Operon-->
                   <TABLE class="custom-table3">
                     <thead>
                     <tr>
-                      <th><b>Transcription unit</b></th>
-                      <th><b>Promoter</b></th>
+                      <th clsss='head'><b>Transcription unit</b></th>
+                      <th class='head'><b>Promoter</b></th>
                     </tr>
                     </thead>
                     <tbody>
