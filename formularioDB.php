@@ -6,7 +6,7 @@
   <body>
   <nav class="topnav">
         <div class="logo">
-        <a href="/PROYECTO/home.php"><img src="/PROYECTO/peppa.png"/></a>
+        <a href="/PROYECTO/home.php"><img src="/PROYECTO/logo.png"/></a>
         </div>
         <div class="tabs">
           <b><a href="/PROYECTO/home.php">Home</a></b>

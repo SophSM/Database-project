@@ -2,11 +2,12 @@
     <head>
         <title> Operon Results </title>
         <link rel="stylesheet" type="text/css" href="/PROYECTO/mystyle.css">
+        <form id="form" name="form" method="get" action="resultados.php">
     </head>
   <body>
   <nav class="topnav">
         <div class="logo">
-        <a href="/PROYECTO/home.php"><img src="/PROYECTO/peppa.png"/></a>
+        <a href="/PROYECTO/home.php"><img src="/PROYECTO/logo.png"/></a>
         </div>
         <div class="tabs">
           <b><a href="/PROYECTO/home.php">Home</a></b>
@@ -64,8 +65,8 @@
                   $anterior ='';
                   $filas_tu = count($tu_array);
                   if ($filas_tu>0) //hacer las tablas para cada trans_unit
-                  {
-                    $numero_de_tu=0;
+                  {?>
+                  <?php $numero_de_tu=0;
                     $numero_de_promoter=0;
                     $numero_de_terminator=0;
                     for($unidad=0; $unidad<$filas_tu; $unidad++)
@@ -79,13 +80,14 @@
                         $transcription_name = $tu_names->fetch_object();
                       }
                       if ($transcription_name->transcription_unit_id != $anterior){ ?>
+                      <img class= "linea" src="/PROYECTO/line.png">
                         <h3>
                         <?php 
-                      $numero_de_tu = $numero_de_tu + 1;
-                      echo $numero_de_tu."° Transcription unit";
+                      //$numero_de_tu = $numero_de_tu + 1;
+                      //echo $numero_de_tu."° Transcription unit";
+                      echo "Transcription unit";
                         ?>
                       </h3>
-
                       <table class="custom-table2">
                       <?php
                       $synonyms = $mysqli->query("SELECT * FROM OBJECT_SYNONYM g WHERE object_ID = '" . $tu_array[$unidad] . "'");
@@ -156,7 +158,7 @@
                       </table> <!-- fin de tabla de transcription_unit -->
 
                       <?php //Para tabla de promoter
-                      $numero_de_promoter = $numero_de_promoter + 1;
+                      //$numero_de_promoter = $numero_de_promoter + 1;
                       $promoter = $mysqli->query("SELECT * FROM PROMOTER pro JOIN TRANSCRIPTION_UNIT tu ON pro.promoter_id=tu.promoter_id AND tu.transcription_unit_id = '" . $tu_array[$unidad] . "'");
                       if ($promoter->num_rows>0)
                         { 
@@ -167,7 +169,8 @@
                             }
                             ?>
                             <h3>
-                            <?php echo $numero_de_promoter."° Promoter"; ?></h3>
+                            <?php //echo $numero_de_promoter."° Promoter"; 
+                            echo "Promoter"?></h3>
                             <table class="custom-table2">
                             <thead>
                             <tr>
@@ -216,11 +219,12 @@
                         <?php }
                         $promoter->close(); //if de promoter  ?>
                       <?php //Tabla para terminator(s)
-                      $numero_de_terminator = $numero_de_terminator + 1;
+                      //$numero_de_terminator = $numero_de_terminator + 1;
                         $terminator = $mysqli->query("SELECT * FROM TERMINATOR ter JOIN TU_TERMINATOR_LINK tute ON ter.terminator_id = tute.terminator_id JOIN TRANSCRIPTION_UNIT tu ON tute.transcription_unit_id = tu.transcription_unit_id AND tu.transcription_unit_id = '" . $tu_array[$unidad] . "'");
                         if ($terminator->num_rows>0)
                         {?>
-                          <h3> <?php echo $numero_de_terminator."° Terminator(s)"; ?></h3>
+                          <h3> <?php //echo $numero_de_terminator."° Terminator(s)";
+                          echo "Terminator(s)" ?></h3>
                           <table class="custom-table2">
                             <thead>
                             <tr>
@@ -255,11 +259,10 @@
                         
                       } 
                       $terminator->close();//if de terminator?>
-                      <br><br>
-                      <br><br>
                     <?php
                     $anterior = $transcription_name->transcription_unit_id; 
                     }
+                    
                   }//for grande?> 
                     <br><br>
           <?php $trans_u ->close();
@@ -272,5 +275,9 @@
               $result_operon->close();
 
             }?>
+            <form>
+        <input id="anterior" type="button" value="Back" onclick="history.back()">
+    </form>
+    <br><br>
     </body>
 </html>

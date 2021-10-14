@@ -3,12 +3,18 @@ header img{
     height: 30%;
     width: 100%;
 }
+
 body {
     font-family: "Roboto", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
     background-color: #ffffff;
     font-weight: 300; 
     color:#ed7966;
     text-align: center;
+    
+}
+body img{
+    height: 30%;
+    width: 100%;
 }
 /*syle of top navigation bar */
 .topnav {
@@ -71,10 +77,14 @@ body {
 {color:#ed7966;
 font-size:17px;}
 .logo img{
-    height: 36px;
-    width: 36px;
     float: left;
     /* if you want it vertically middle of the navbar. */
+}
+.logo a{
+    height: 110px;
+    width:100px;
+    padding-right: 1px;
+    padding-left: 10px;
 }
 .buscador input::placeholder{color:#303179;
 font-size: 14px;}
@@ -173,7 +183,7 @@ a {
             -webkit-transition: .3s all ease;
             -o-transition: .3s all ease;
             transition: .3s all ease; }
-    .custom-table2 tbody tr th a, .custom-table2 tbody tr td a {
+    .custom-table2 tbody tr th, .custom-table2 tbody tr td {
                 color: rgb(110, 110, 110); } /*texto celda normal*/
     .custom-table2 tbody tr.spacer td {
             padding: 0 !important;
