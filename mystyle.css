@@ -1,6 +1,6 @@
 
 header img{
-    height: 30%;
+    height: 10px;
     width: 100%;
 }
 
@@ -23,9 +23,9 @@ body img{
     background-color: #303179 /*color barra nav*/;
     border-radius: 0px;
     padding: 1px 1px;
-
+    height: 12%;
 }
-.topnav a {
+.tabs a {
     float: left;
     display: block;
     color: #ffffff;
@@ -33,7 +33,7 @@ body img{
     padding: 5px 36px;
     text-decoration: none;
     font-size: 17px;
-    margin-top: 8px;
+    margin-top: 25px;
     margin-bottom: 1px;
     
   }
@@ -81,10 +81,14 @@ font-size:17px;}
     /* if you want it vertically middle of the navbar. */
 }
 .logo a{
-    height: 110px;
-    width:100px;
+    height: 300px;
+    width: auto;
+    padding-top: 5px;
+    padding-bottom: 1px;
+    padding-left: 1px;
     padding-right: 1px;
-    padding-left: 10px;
+    float: left;
+    display: block;
 }
 .buscador input::placeholder{color:#303179;
 font-size: 14px;}
@@ -201,11 +205,28 @@ a {
     color:#ed7966;
     text-decoration: underline;
 }
+.custom-table2 a:visited{
+    color:#ed7966;
+    text-decoration: underline;
+}
 .head{
     background:#303179
 }
 .custom-table2 a:hover{color:#303179;
     border-bottom:1px solid #303179}
+.nombre-operon a{text-decoration: none;
+    border-bottom:1px solid #ed7966}
+.nombre-operon a:link{
+    color:#ed7966;
+    text-decoration: underline;
+}
+.nombre-operon a:hover{
+    color:#303179;
+    border-bottom:1px solid #303179}
+    .nombre-operon a:visited{
+        color:#ed7966;
+        text-decoration: underline;
+    }
 #product tbody th, #product tbody td{
     color: #777;
     font-weight: 400;
@@ -225,7 +246,7 @@ a {
         background: #303179; /*color header back*/
         border-top: none;
         border-bottom: none !important;
-        color: #303179;  /*color header text */
+        color: #ed7966;  /*color header text */
 }
 .custom-table3 tbody tr th, .custom-table3 tbody tr td {
     background: #f7b6a5; /*color celda normal*/

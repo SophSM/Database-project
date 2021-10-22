@@ -7,7 +7,7 @@
   <body>
   <nav class="topnav">
         <div class="logo">
-        <a href="/PROYECTO/home.php"><img src="/PROYECTO/logo.png"/></a>
+        <a href="/PROYECTO/home.php"><img src="/PROYECTO/logo2.png"/></a>
         </div>
         <div class="tabs">
           <b><a href="/PROYECTO/home.php">Home</a></b>
@@ -80,7 +80,7 @@
                         $transcription_name = $tu_names->fetch_object();
                       }
                       if ($transcription_name->transcription_unit_id != $anterior){ ?>
-                      <img class= "linea" src="/PROYECTO/line.png">
+                      <img class= "linea" src="/PROYECTO/dna.png">
                         <h3>
                         <?php 
                       //$numero_de_tu = $numero_de_tu + 1;

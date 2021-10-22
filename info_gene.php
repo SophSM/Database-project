@@ -15,7 +15,7 @@ Operon-->
   <body>
   <nav class="topnav">
         <div class="logo">
-        <a href="/PROYECTO/home.php"><img src="/PROYECTO/logo.png"/></a>
+        <a href="/PROYECTO/home.php"><img src="/PROYECTO/logo2.png"/></a>
         </div>
         <div class="tabs">
           <b><a href="/PROYECTO/home.php">Home</a></b>
@@ -132,7 +132,7 @@ Operon-->
                         $campos5 = $operon->fetch_object();
                       }
                     ?>
-                  <?php echo '<td> <a href="info_operon.php?question='.$campos5->operon_id.'&Submit=Buscar"> '; ?><?= $campos5->operon_name; ?> </a> </td>
+                  <?php echo '<td> <a class="nombre-operon" href="info_operon.php?question='.$campos5->operon_id.'&Submit=Buscar"> '; ?><?= $campos5->operon_name; ?> </a> </td>
                   <td>
                   <TABLE class="custom-table3">
                     <thead>
