@@ -151,7 +151,7 @@ Operon-->
                         echo "<td>".$trans_u->transcription_unit_name."</td>";
                         }
                         else {
-                          echo "<td> not known transcription unit </td>";
+                          echo "<td> Unknown transcription unit </td>";
                         }
                         $promoter = $mysqli->query("SELECT * FROM PROMOTER WHERE promoter_id = '" . $trans_u->promoter_id. "'");
                         if ($promoter->num_rows >0){
@@ -162,7 +162,7 @@ Operon-->
                           
                         }
                         else{
-                          echo "<td> not known promoters</td>"; 
+                          echo "<td> Unknown promoters</td>"; 
                         }
                         echo "</tr>";
                     }

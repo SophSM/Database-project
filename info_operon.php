@@ -102,10 +102,10 @@
                           echo "<th class='head'> Synonyms(s)</th>";
                         } ?>
                         <?php
-                        if (!(is_null($transcription_name->transcription_unit_note)))
-                        {
-                          echo "<th class='head'> Note(s)</th>";
-                        } ?>
+                        //if (!(is_null($transcription_name->transcription_unit_note)))
+                        //{
+                          //echo "<th class='head'> Note(s)</th>";
+                        //} ?>
                       </tr>
                       </thead>
                       <tr>
@@ -116,7 +116,7 @@
                         }
                         else
                         {
-                          echo "<td>not known transcription unit name</td>";
+                          echo "<td>Unknown transcription unit name</td>";
                         }
                         ?>
                         <?php //para genes
@@ -149,10 +149,10 @@
                         }
                         ?>
                         <?php //para notas
-                        if(!(is_null($transcription_name->transcription_unit_note)))
-                        {
-                          echo "<td>".$transcription_name->transcription_unit_note."</td>";
-                        }
+                        //if(!(is_null($transcription_name->transcription_unit_note)))
+                        //{
+                          //echo "<td>".$transcription_name->transcription_unit_note."</td>";
+                        //}
                         ?>
                       </tr>
                       </table> <!-- fin de tabla de transcription_unit -->
@@ -167,6 +167,36 @@
                             // obtener objeto 
                             $promo = $promoter->fetch_object();
                             }
+                            $check=FALSE;
+                            $left_array = array();
+                            $right_array = array();
+                            $pos_query = $mysqli->query("SELECT * FROM GENE g JOIN TU_GENE_LINK tul ON g.gene_id = tul.gene_id JOIN TRANSCRIPTION_UNIT tu ON tul.transcription_unit_id = tu.transcription_unit_id AND tu.transcription_unit_ID = '" . $tu_array[$unidad] . "'");
+                            for ($num_pos = 1;  $num_pos <= $pos_query->num_rows; $num_pos++)
+                            {
+                              $positions= $pos_query->fetch_object();
+                              array_push($left_array, $positions->gene_posleft);
+                              array_push($right_array, $positions->gene_posright);
+                            }
+                            $mayor_right = max($right_array);
+                            $menor_left = min($left_array);
+                            if (!(is_null($promo->pos_1)) and $genes->num_rows>0)
+                            {
+
+                              for ($num_gen = 1;  $num_gen <= $genes->num_rows; $num_gen++)
+                              { 
+                                $forma = $tu_genes->gene_strand;
+
+                              }
+                              $check=TRUE;
+                              if ($forma == 'forward'){
+                              $distance = abs(($promo->pos_1)-$menor_left);
+                              }
+                              else
+                              {
+                                $distance = abs(($promo->pos_1)-$mayor_right);
+                              }
+                            }
+
                             ?>
                             <h3>
                             <?php //echo $numero_de_promoter."° Promoter"; 
@@ -183,6 +213,11 @@
                             if(!(is_null($promo->sigma_factor)))
                             {
                             echo "<th class='head'> Sigma factor </th>";
+                            }
+                            // Distance from start of gene
+                            if($check==TRUE)
+                            {
+                              echo "<th class='head'> Distance from start of gene </th>";
                             }
                             if(!(is_null($promo->promoter_sequence)))
                             {
@@ -208,6 +243,10 @@
                             if(!(is_null($promo->sigma_factor)))
                             {
                             echo "<td>".$promo->sigma_factor."</td>";
+                            }
+                            if($check==TRUE)
+                            {
+                              echo "<td>".$distance."</td>";
                             }
                             if(!(is_null($promo->promoter_sequence)))
                             {

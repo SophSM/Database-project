@@ -21,7 +21,7 @@
     <div class="formulario">
     <form id="form" name="form" method="get" action="resultados.php">
       
-      <h1>Search in PEPPA DATA BASE</h1>
+      <h1>Search in LCGEJ DATA BASE</h1>
       Insert ID or search by name: <br><br>
       <div class="buscador">
       <input name="search" type="text" id="search" size="15" placeholder="Search..."/>
