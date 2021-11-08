@@ -20,6 +20,9 @@
           <img src="/PROYECTO/header_azul.png" alt="header logo">
         </header>
       <br><br>
+      <form>
+        <input id="anterior" type="button" value="Back" onclick="history.back()">
+    </form>
         <?php
         error_reporting(E_ALL);
         ini_set('display_errors', '1');
@@ -93,10 +96,7 @@
               ?> <br><h1> <?= $gene_req; ?> is not registered in promotedb :( <br><h1>
           <?php }?>
           <br><br>
-<form>
-        <input id="anterior" type="button" value="Back" onclick="history.back()">
-    </form>
-    <br><br>
+
         </body>
       </html>
       

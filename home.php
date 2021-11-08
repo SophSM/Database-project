@@ -20,5 +20,6 @@
           <img src="/PROYECTO/header_azul.png" alt="header logo">
         </header>
     <br><br>
+    <img class = 'imagen' src="/PROYECTO/logo_blanco2.png"/>
 </body>
 </html>
