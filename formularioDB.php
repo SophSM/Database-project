@@ -1,9 +1,11 @@
 <html>
   <head>
+    <!-- pagina para el formulario principal -->
     <title> Consulta DB </title>
     <link rel="stylesheet" type="text/css" href="/PROYECTO/mystyle.css">
   </head>
   <body>
+    <!-- elementos de barra de nav -->
   <nav class="topnav">
         <div class="logo">
         <a href="/PROYECTO/home.php"><img src="/PROYECTO/logo2.png"/></a>
@@ -18,9 +20,10 @@
         <header>
           <img src="/PROYECTO/header_azul.png" alt="header logo">
         </header>
+        <!-- seccion del formulario -->
     <div class="formulario">
     <form id="form" name="form" method="get" action="resultados.php">
-      
+
       <h1>Search in LCGEJ DATA BASE</h1>
       Insert ID or search by name: <br><br>
       <div class="buscador">
@@ -28,7 +31,7 @@
       </div>
       <br>
 
-
+      <!-- botones de buscar y de limpiar -->
       <input class="button" type="submit" name="Submit" value="Buscar" />
       <input class="button" type="reset" name="Limpiar" value="Limpiar" />
     </form>

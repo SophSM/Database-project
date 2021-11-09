@@ -1,6 +1,8 @@
 <html>
 <head>
+  <!-- Pagina para los resultados de busqueda-->
         <title> Results </title>
+        <!-- Elementos del encabezado -->
         <link rel="stylesheet" type="text/css" href="/PROYECTO/mystyle.css">
         <form id="form" name="form" method="get" action="resultados.php">
     </head>
@@ -12,6 +14,7 @@
         <div class="tabs">
           <b><a href="/PROYECTO/home.php">Home</a></b>
           <b><a href="/PROYECTO/about.php">About</a></b>
+          <!-- barra de busqueda extra -->
           <b><a class="active" href="/PROYECTO/formularioDB.php">Search</a></b>
           <input name="search" type="text" id="search" size="15" placeholder="Search..."/>
         </div>
@@ -20,10 +23,12 @@
           <img src="/PROYECTO/header_azul.png" alt="header logo">
         </header>
       <br><br>
+      <!-- boton de anterior -->
       <form>
         <input id="anterior" type="button" value="Back" onclick="history.back()">
     </form>
         <?php
+        // conectarse al servidor
         error_reporting(E_ALL);
         ini_set('display_errors', '1');
         $gene_req = escapeshellcmd( $_GET["search"] );
@@ -33,12 +38,11 @@
             echo "Fallo al conectar a MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
             die();
         }
-        // verificar el nombre de la variable de gene_id
         $result_gene = $mysqli->query("SELECT * FROM GENE g WHERE gene_name like '%".$gene_req."%' OR gene_ID = '" . $gene_req . "'");
         $result_operon = $mysqli->query("SELECT * FROM OPERON g WHERE operon_name like '%".$gene_req."%' OR operon_ID = '" . $gene_req . "'");
         if (($result_gene->num_rows > 0) or ($result_operon->num_rows > 0)) {
             ?>
-            <?php 
+            <?php //Resultados de genes si es que hay mas de 0 resultados
             if ($result_gene->num_rows > 0) { ?>
             <h2> Results for <?= $gene_req; ?> in GENE </h2> <br><br>
                 <table class='custom-table'>
@@ -49,11 +53,14 @@
                   </tr>    
                   </thead>
                   <tbody>
-                  <?php  for ($num_fila = 1;  $num_fila <= $result_gene->num_rows; $num_fila++) {
+                  <?php  
+                  // obtener los resultados del query
+                  for ($num_fila = 1;  $num_fila <= $result_gene->num_rows; $num_fila++) {
                   // obtener objeto 
                   $campos = $result_gene->fetch_object();
                     ?>
                   <tr>
+                    <!-- celdas con el nombre e id de cada gene-->
                 <?php echo '<td> <a href="info_gene.php?question='.$campos->gene_id.'&Submit=Buscar"> '; ?><?= $campos->gene_id; ?> </a> </td>
                 <?php echo '<td> <a href="info_gene.php?question='.$campos->gene_name.'&Submit=Buscar"> '; ?><?= $campos->gene_name; ?> </a> </td>
                   </tr>
@@ -63,7 +70,9 @@
                 </table>
                 <br><br>
             <?php } ?>
-            <?php if ($result_operon->num_rows > 0) { ?>
+            <?php 
+            // tabla para el operon solo si hay mas de 0 filas
+            if ($result_operon->num_rows > 0) { ?>
             <h2> Results for <?= $gene_req; ?> in OPERON </h2> <br><br>
                 <table class='custom-table'>
                 <thead>
@@ -74,10 +83,11 @@
                   </thead>
                   <tbody>
                   <?php  for ($num_fila = 1;  $num_fila <= $result_operon->num_rows; $num_fila++) {
-                  // obtener objeto 
+                  // obtener resultados del query de operon
                   $campos = $result_operon->fetch_object();
                     ?>
                   <tr>
+                    <!-- celdas con id y nombre de operon-->
                   <?php echo '<td> <a href="info_operon.php?question='.$campos->operon_id.'&Submit=Buscar"> '; ?><?= $campos->operon_id; ?> </a> </td>
                   <?php echo '<td> <a href="info_operon.php?question='.$campos->operon_name.'&Submit=Buscar"> '; ?><?= $campos->operon_name; ?> </a> </td>
                   </tr>
@@ -88,6 +98,7 @@
                 <br><br>
       
               <?php }
+              //cerrar resultados
               $result_gene->close();
               $result_operon->close();
              ?>

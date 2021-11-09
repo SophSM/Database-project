@@ -1,10 +1,12 @@
 <html>
+  <!-- pagina de about me-->
 <head>
         <title> About </title>
         <link rel="stylesheet" type="text/css" href="/PROYECTO/mystyle.css">
         <form id="form" name="form" method="get" action="resultados.php">
 </head>
 <body>
+  <!--elementos de la barra de nav-->
   <nav class="topnav">
         <div class="logo">
         <a href="/PROYECTO/home.php"><img src="/PROYECTO/logo2.png"/></a>

@@ -1,14 +1,15 @@
-
+/*formato del logo*/
 header img{
     height: 10px;
     width: 100%;
 }
+/*imagen grande de pagina de home*/
 .imagen{
     height: 45%;
     width: 25%;
 
 }
-
+/*formato para cuerpo de las paginas*/
 body {
     font-family: "Roboto", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
     background-color: #ffffff;
@@ -17,11 +18,13 @@ body {
     text-align: center;
     
 }
+/*imagen de separacion de tu (dna)*/
 body img{
     height: 30%;
     width: 100%;
 }
-/*syle of top navigation bar */
+
+/*estilo de la barra de nav*/
 .topnav {
     font-family: "Roboto", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
     overflow: hidden;
@@ -42,13 +45,13 @@ body img{
     margin-bottom: 1px;
     
   }
-/* Change the color of links on hover */
+/* Color links cuando hover */
 .topnav a:hover {
     color: #ed7966;
     transition: all 0.2s linear;
   }
   
-  /* Style the "active" element to highlight the current page */
+  /* Boton activo */
   .topnav a.active {
     color: #ed7966;
     font-size: 17px;
@@ -65,7 +68,7 @@ body img{
     width: 100%;
     transition: width .3s;
 }
-/**/
+/*seccion de busqueda en barra de navegacion*/
 .topnav input[type=text] {
     float:right;
     padding: 6px;
@@ -83,7 +86,7 @@ body img{
 font-size:17px;}
 .logo img{
     float: left;
-    /* if you want it vertically middle of the navbar. */
+
 }
 .logo a{
     height: 300px;
@@ -97,25 +100,12 @@ font-size:17px;}
 }
 .buscador input::placeholder{color:#303179;
 font-size: 14px;}
-/* When the screen is less than 600px wide, stack the links and the search field vertically instead of horizontally */
-/*@media screen and (max-width: 600px) {
-    .topnav a, .topnav input[type=text] {
-        float: none;
-        display: block;
-    }
-    .topnav input[type=text] {
-      border: 1px solid #ccc;
-
-    }
-  }
-*/
-
-/**/
+/*formato de encabezados*/
 h1, h2, h3, h4, h5, h6,
 .h1, .h2, .h3, .h4, .h5, .h6 {
     font-family: "Roboto", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"; 
     align-items: center;}
-
+/*links*/
 a {
     -webkit-transition: .3s all ease;
     -o-transition: .3s all ease;
@@ -273,6 +263,7 @@ a {
     border-radius: 5px;
     font-size: 15px;
 }
+/*boton anterior*/
 #anterior{
         background-color: #303179;
         float:left;

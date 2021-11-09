@@ -1,14 +1,8 @@
-<!--Nombre
-Sinonimo
-Strand
-secuencia
-
-Producto
-…
-Operon-->
+<!--Pagina para resultados de gene-->
 <html>
     <head>
         <title> Gene Results </title>
+        <!-- elementos de barra de nav-->
         <link rel="stylesheet" type="text/css" href="/PROYECTO/mystyle.css">
         <form id="form" name="form" method="get" action="resultados.php">
     </head>
@@ -28,7 +22,9 @@ Operon-->
           <img src="/PROYECTO/header_azul.png" alt="header logo">
         </header>
     <br><br>
+
         <?php
+        //conexion al servidor
       error_reporting(E_ALL);
       ini_set('display_errors', '1');
       $gene_req = escapeshellcmd( $_GET["question"] );
@@ -38,11 +34,13 @@ Operon-->
           echo "Fallo al conectar a MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
           die();
       }
+      //query del gene buscado
       $result_gene = $mysqli->query("SELECT * FROM GENE g WHERE gene_name like '%".$gene_req."%' OR gene_ID = '" . $gene_req . "'");
         ?>
       <?php 
             if ($result_gene->num_rows > 0) { ?>
             <h2><?= $gene_req; ?> GENE in Escherichia coli K-12 genome </h2> <br><br>
+            <!-- tabla para gene-->
             <h3>Gene</h3>
             <TABLE class="custom-table2">
               <thead>
@@ -62,22 +60,29 @@ Operon-->
                     <td><?= $campos->gene_id;?> </td>
                     <td><?= $campos->gene_name; ?> </td>
                     <td>
-                      <?php $sinonimos= $mysqli->query("SELECT object_synonym_name FROM OBJECT_SYNONYM g WHERE object_id = '" . $campos->gene_id . "'");
+                      <?php
+                      //query de sinonimos
+                       $sinonimos= $mysqli->query("SELECT object_synonym_name FROM OBJECT_SYNONYM g WHERE object_id = '" . $campos->gene_id . "'");
                       for ($num_fila = 1;  $num_fila <= $sinonimos->num_rows; $num_fila++) {
                         $campos2 = $sinonimos->fetch_object();
-                        echo $campos2->object_synonym_name. "<br> ";
+                        echo $campos2->object_synonym_name. "<br> ";// imprimir cada sinonimo
+
                       }
                     ?>
                     </td>
                     <td><?= $campos->gene_strand;?> </td>
+                    <!-- obtener secuencia, diciendo que es de tipo gene-->
                     <?php echo '<td> <a href="secuencias.php?sequence='.$campos->gene_id.'&type=gene"> '; ?> See gene sequence </a> </td>
                   </tr>
                   <?php } ?>
                 </table>
                 <br><br>
-            <?php $product= $mysqli->query("SELECT * FROM PRODUCT g WHERE product_id IN(SELECT product_id FROM GENE_PRODUCT_LINK g WHERE gene_id= '" . $campos->gene_id. "')");
+            <?php 
+            //query para el producto
+            $product= $mysqli->query("SELECT * FROM PRODUCT g WHERE product_id IN(SELECT product_id FROM GENE_PRODUCT_LINK g WHERE gene_id= '" . $campos->gene_id. "')");
             if ($product->num_rows>0){
             ?>
+            <!-- tabla para el producto-->
             <h3>Product</h3>
             <TABLE class="custom-table2" id="product">
               <thead>
@@ -92,6 +97,7 @@ Operon-->
               </thead>
                 <tr>
                   <td>
+                    <!-- obtener objetos del query-->
                   <?php for ($num_fila = 1;  $num_fila <= $product->num_rows; $num_fila++) {
                         $campos3 = $product->fetch_object();
                         echo $campos3->product_name;
@@ -99,13 +105,16 @@ Operon-->
                       ?>
                   </td>
                   <td>
-                    <?php $product_synonym= $mysqli->query("SELECT object_synonym_name FROM OBJECT_SYNONYM g WHERE object_id = '" . $campos3->product_id . "'");
+                    <?php 
+                    //sinonimos del producto
+                    $product_synonym= $mysqli->query("SELECT object_synonym_name FROM OBJECT_SYNONYM g WHERE object_id = '" . $campos3->product_id . "'");
                       for ($num_fila = 1;  $num_fila <= $product_synonym->num_rows; $num_fila++) {
                         $campos4 = $product_synonym->fetch_object();
                         echo $campos4->object_synonym_name. "<br> ";
                       }
                     ?>
                   </td>
+                  <!-- imprimir secuencia diciendo que es de tipo producto-->
                   <?php echo '<td> <a href="secuencias.php?sequence='.$campos3->product_id.'&type=product"> '; ?> See aminoacid sequence </a> </td>
                   <td><?php echo $campos3->location ?></td>
                   <td><?php echo $campos3->molecular_weigth?></td>
@@ -116,6 +125,7 @@ Operon-->
                     <?php 
                   $product_synonym->close();
                   } ?>
+                  <!-- tabla para el operon-->
                 <h3>Operon</h3>
               <TABLE class = "custom-table2">
                 <thead>
@@ -126,14 +136,18 @@ Operon-->
                 </thead>
                 <tbody>
                 <tr>
-                    
+                    <!-- query de operon-->
                   <?php $operon= $mysqli->query("SELECT o.operon_name, o.operon_id FROM OPERON o JOIN TRANSCRIPTION_UNIT t ON o.operon_id=t.operon_id JOIN TU_GENE_LINK tu ON t.transcription_unit_id=tu.transcription_unit_id JOIN GENE g ON tu.gene_id=g.gene_id AND g.gene_id = '" . $campos->gene_id. "'");
                       for ($num_fila = 1;  $num_fila <= $operon->num_rows; $num_fila++) {
                         $campos5 = $operon->fetch_object();
                       }
                     ?>
-                  <?php echo '<td> <a class="nombre-operon" href="info_operon.php?question='.$campos5->operon_id.'&Submit=Buscar"> '; ?><?= $campos5->operon_name; ?> </a> </td>
+
+                  <?php 
+                  //hipervinculo para operon
+                  echo '<td> <a class="nombre-operon" href="info_operon.php?question='.$campos5->operon_id.'&Submit=Buscar"> '; ?><?= $campos5->operon_name; ?> </a> </td>
                   <td>
+                    <!-- tabla para los transcription unit-->
                   <TABLE class="custom-table3">
                     <thead>
                     <tr>
@@ -143,26 +157,32 @@ Operon-->
                     </thead>
                     <tbody>
                     <tr>
+                      <!-- query para transcription unit-->
                     <?php $tu= $mysqli->query("SELECT * FROM TRANSCRIPTION_UNIT WHERE operon_id = '" . $campos5->operon_id. "'");
                       for ($num_fila = 1;  $num_fila <= $tu->num_rows; $num_fila++) {
                         $trans_u = $tu->fetch_object();
+                        //imprimir info si es conocida
                         echo "<tr>";
                         if (!(is_null($trans_u->transcription_unit_name))){
                         echo "<td>".$trans_u->transcription_unit_name."</td>";
                         }
                         else {
-                          echo "<td> Unknown transcription unit </td>";
+                          //si no se conoce, imprimirlo
+                          echo "<td> Unknown transcription unit name </td>";
                         }
+                        //query del promotor
                         $promoter = $mysqli->query("SELECT * FROM PROMOTER WHERE promoter_id = '" . $trans_u->promoter_id. "'");
                         if ($promoter->num_rows >0){
                           for ($numero_fila = 1;  $numero_fila <= $promoter->num_rows; $numero_fila++) {
                             $promoter_tab = $promoter->fetch_object();
                           } 
+                          //imprimir nombre si se conoce
                           echo "<td>".$promoter_tab->promoter_name."</td>";
                           
                         }
                         else{
-                          echo "<td> Unknown promoters</td>"; 
+                          //imprimiendo mensaje si no se conoce
+                          echo "<td> Unknown promoter name</td>"; 
                         }
                         echo "</tr>";
                     }
@@ -176,6 +196,7 @@ Operon-->
 
 </TABLE>
 <br><br>
+<!-- boton de anterior-->
 <form>
         <input class="button" id="anterior" type="button" value="Back" onclick="history.back()">
     </form>
