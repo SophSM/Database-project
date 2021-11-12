@@ -68,7 +68,7 @@ body img{
     width: 100%;
     transition: width .3s;
 }
-/*seccion de busqueda en barra de navegacion*/
+/*caja de busqueda en barra de navegacion*/
 .topnav input[type=text] {
     float:right;
     padding: 6px;
@@ -81,6 +81,7 @@ body img{
     vertical-align: middle;
     border-radius: 25px;
 }
+/*leyenda por default caja de busqueda de barra de nav*/
 .topnav input::placeholder
 {color:#ed7966;
 font-size:17px;}
@@ -98,6 +99,7 @@ font-size:17px;}
     float: left;
     display: block;
 }
+/*formato de leyenda placeholder por default de caja de busqueda principal*/
 .buscador input::placeholder{color:#303179;
 font-size: 14px;}
 /*formato de encabezados*/

@@ -4,7 +4,7 @@
         <title> Results </title>
         <!-- Elementos del encabezado -->
         <link rel="stylesheet" type="text/css" href="/PROYECTO/mystyle.css">
-        <form id="form" name="form" method="get" action="resultados.php">
+        <form id="form" name="form" method="get" action="resultados.php"><!-- para habilitar caja de busqueda en barra de nav-->
     </head>
     <body>
     <nav class="topnav">
@@ -16,6 +16,7 @@
           <b><a href="/PROYECTO/about.php">About</a></b>
           <!-- barra de busqueda extra -->
           <b><a class="active" href="/PROYECTO/formularioDB.php">Search</a></b>
+          <!--caja de busqueda de la barra de nav-->
           <input name="search" type="text" id="search" size="15" placeholder="Search..."/>
         </div>
         </nav>
