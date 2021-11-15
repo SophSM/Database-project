@@ -1,11 +1,13 @@
 <!--Pagina para resultados de gene-->
+<!--Por Sofia Salazar-->
+<!--15 nov 2021-->
 <html>
 
 <head>
   <title> Gene Results </title>
   <link rel="stylesheet" type="text/css" href="/PROYECTO/mystyle.css">
+  <!-- para habilitar caja de busqueda en barra de nav-->
   <form id="form" name="form" method="get" action="resultados.php">
-    <!-- para habilitar caja de busqueda en barra de nav-->
 </head>
 
 <body>
@@ -23,6 +25,7 @@
     </div>
   </nav>
   <header>
+    <!--foto de olas azul-->
     <img src="/PROYECTO/header_azul.png" alt="header logo">
   </header>
   <br><br>
@@ -209,11 +212,12 @@
     </form>
     <br><br>
   <?php
+    //cerrar querys
     $result_gene->close();
     $sinonimos->close();
     $product->close();
     $operon->close();
-    $tu->close();;
+    $tu->close();
     $promoter->close();
   } //if de si el gen tiene mas de 0 filas (result_gene->num_rows)
   ?>

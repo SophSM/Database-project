@@ -1,11 +1,13 @@
+<!--Pagina principal "HOME"-->
+<!--Por Sofia Salazar-->
+<!--15 nov 2021-->
 <html>
-<!--pagina home-->
 
 <head>
   <title> Home </title>
   <link rel="stylesheet" type="text/css" href="/PROYECTO/mystyle.css">
+  <!-- para habilitar caja de busqueda en barra de nav-->
   <form id="form" name="form" method="get" action="resultados.php">
-    <!-- para habilitar caja de busqueda en barra de nav-->
 </head>
 
 <body>
@@ -23,9 +25,11 @@
     </div>
   </nav>
   <header>
+    <!--foto de olas azul-->
     <img src="/PROYECTO/header_azul.png" alt="header logo">
   </header>
   <br><br>
+  <!--imagen del logo grande-->
   <img class='imagen' src="/PROYECTO/logo_blanco2.png" />
 </body>
 

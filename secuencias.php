@@ -1,10 +1,12 @@
+<!-- Pagina para secuencias-->
+<!--Por Sofia Salazar-->
+<!--15 nov 2021-->
 <html>
-<!-- pagina para secuencias-->
 
 <head>
   <link rel="stylesheet" type="text/css" href="/PROYECTO/mystyle.css">
+  <!-- para habilitar caja de busqueda en barra de nav-->
   <form id="form" name="form" method="get" action="resultados.php">
-    <!-- para habilitar caja de busqueda en barra de nav-->
     <title> Sequence </title>
 
 </head>
@@ -23,6 +25,7 @@
       <input name="search" type="text" id="search" size="15" placeholder="Search..." />
     </div>
   </nav>
+  <!--foto de olas azul-->
   <header>
     <img src="/PROYECTO/header_azul.png" alt="header logo">
   </header>
@@ -60,7 +63,7 @@
       ?>
 
     <?php
-
+      //cerrar query
       $result_gene->close();
     } else {
       //imprimir mensaje si no se encuentra la secuencia
@@ -88,7 +91,7 @@
       ?>
 
     <?php
-
+      //cerrar query
       $result_product->close();
     } else {
       //error si no se encuentra la secuencia

@@ -1,7 +1,9 @@
+  <!-- Pagina para el formulario principal "SEARCH" -->
+  <!--Por Sofia Salazar-->
+  <!--15 nov 2021-->
 <html>
 
 <head>
-  <!-- pagina para el formulario principal -->
   <title> Consulta DB </title>
   <link rel="stylesheet" type="text/css" href="/PROYECTO/mystyle.css">
   <form id="form" name="form" method="get" action="resultados.php">
@@ -23,6 +25,7 @@
     </div>
   </nav>
   <header>
+    <!--foto de olas azul-->
     <img src="/PROYECTO/header_azul.png" alt="header logo">
   </header>
   <!-- seccion del formulario -->

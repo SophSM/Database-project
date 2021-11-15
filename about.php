@@ -1,5 +1,7 @@
+<!-- Pagina de about me "ABOUT"-->
+<!--Por Sofia Salazar-->
+<!--15 nov 2021-->
 <html>
-<!-- pagina de about me-->
 
 <head>
   <title> About </title>
@@ -22,6 +24,7 @@
     </div>
   </nav>
   <header>
+    <!--foto de olas azul-->
     <img src="/PROYECTO/header_azul.png" alt="header logo">
   </header>
   <br><br>

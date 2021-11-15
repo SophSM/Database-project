@@ -1,38 +1,56 @@
+/*Hoja de estilos de pagina Web*/
+
+/*Por Sofia Salazar*/
+
+/*15 nov 2021*/
+
 /*formato del logo*/
-header img{
+
+header img {
     height: 10px;
     width: 100%;
 }
+
 /*imagen grande de pagina de home*/
-.imagen{
+
+.imagen {
     height: 45%;
     width: 25%;
+}
 
-}
 /*formato para cuerpo de las paginas*/
+
 body {
+    /*tipo de letra*/
     font-family: "Roboto", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    /*color de fondo de la pagina*/
     background-color: #ffffff;
-    font-weight: 300; 
-    color:#ed7966;
+    font-weight: 300;
+    /*color de la letra*/
+    color: #ed7966;
+    /*alineado en general*/
     text-align: center;
-    
 }
-/*imagen de separacion de tu (dna)*/
-body img{
+
+/*imagen de separacion de transcription units (dna)*/
+
+body img {
     height: 30%;
     width: 100%;
 }
 
 /*estilo de la barra de nav*/
+
 .topnav {
     font-family: "Roboto", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
     overflow: hidden;
-    background-color: #303179 /*color barra nav*/;
+    background-color: #303179/*color barra nav*/
+    ;
     border-radius: 0px;
     padding: 1px 1px;
     height: 12%;
 }
+
 .tabs a {
     float: left;
     display: block;
@@ -43,34 +61,43 @@ body img{
     font-size: 17px;
     margin-top: 25px;
     margin-bottom: 1px;
-    
-  }
+}
+
 /* Color links cuando hover */
+
 .topnav a:hover {
     color: #ed7966;
     transition: all 0.2s linear;
-  }
-  
-  /* Boton activo */
-  .topnav a.active {
+}
+
+/* Boton activo */
+
+.topnav a.active {
     color: #ed7966;
     font-size: 17px;
-  }
-  .tabs a::after {
+}
+
+/*para animacion de la linea de tab*/
+
+.tabs a::after {
     content: '';
     display: block;
     width: 0;
     height: 2px;
-    background: #ed7966; /*linea cuando hover*/
+    background: #ed7966;
+    /*linea cuando hover*/
     transition: width .4s;
 }
+
 .tabs a:hover::after {
     width: 100%;
     transition: width .3s;
 }
+
 /*caja de busqueda en barra de navegacion*/
+
 .topnav input[type=text] {
-    float:right;
+    float: right;
     padding: 6px;
     border: none;
     background: #ffffff;
@@ -81,15 +108,19 @@ body img{
     vertical-align: middle;
     border-radius: 25px;
 }
-/*leyenda por default caja de busqueda de barra de nav*/
-.topnav input::placeholder
-{color:#ed7966;
-font-size:17px;}
-.logo img{
-    float: left;
 
+/*leyenda por default caja de busqueda de barra de nav*/
+
+.topnav input::placeholder {
+    color: #ed7966;
+    font-size: 17px;
 }
-.logo a{
+
+.logo img {
+    float: left;
+}
+
+.logo a {
     height: 300px;
     width: auto;
     padding-top: 5px;
@@ -99,207 +130,333 @@ font-size:17px;}
     float: left;
     display: block;
 }
+
 /*formato de leyenda placeholder por default de caja de busqueda principal*/
-.buscador input::placeholder{color:#303179;
-font-size: 14px;}
+
+.buscador input::placeholder {
+    color: #303179;
+    font-size: 14px;
+}
+
 /*formato de encabezados*/
-h1, h2, h3, h4, h5, h6,
-.h1, .h2, .h3, .h4, .h5, .h6 {
-    font-family: "Roboto", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"; 
-    align-items: center;}
+
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+    font-family: "Roboto", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    align-items: center;
+}
+
 /*links*/
+
 a {
     -webkit-transition: .3s all ease;
     -o-transition: .3s all ease;
-    transition: .3s all ease; }
-    a, a:hover {
-    text-decoration: none !important; }
+    transition: .3s all ease;
+}
+
+a, a:hover {
+    text-decoration: none !important;
+}
+
 .content {
-    padding: 7rem 0; }
-    h2 {
-        text-align: center;
-        font-size: 20px;
-        color: #ed7966; /*color encabezados*/ }
+    padding: 7rem 0;
+}
+
+h2 {
+    text-align: center;
+    font-size: 20px;
+    color: #ed7966;
+    /*color encabezados*/
+}
+
+/*formato de las tablas principales*/
 
 .custom-table {
-    min-width: 800px; 
+    min-width: 800px;
     margin-left: auto;
     margin-right: auto;
-    border-radius: 10px;}
-    .custom-table thead tr, .custom-table thead th {
-        background: #303179; /*color header back*/
-        border-top: none;
-        border-bottom: none !important;
-        color: #ffffff;  /*color header text */
-    }
-    .custom-table tbody th, .custom-table tbody td {
-            color: #777;
-            font-weight: 400;
-            padding-bottom: 5px;
-            padding-top: 5px;
-            font-weight: 300; 
-            text-align: center;}
-    .custom-table tbody tr th, .custom-table tbody tr td {
-            background: #Fae5df; /*color celda normal*/
-            border: none;
-            -webkit-transition: .3s all ease;
-            -o-transition: .3s all ease;
-            transition: .3s all ease; }
-    .custom-table tbody tr th a, .custom-table tbody tr td a {
-                color: rgb(110, 110, 110); } /*texto celda normal*/
-    .custom-table tbody tr.spacer td {
-            padding: 0 !important;
-            height: 3px;
-            border-radius: 0 !important;
-            background: transparent !important; }
-    .custom-table tbody tr.active th, .custom-table tbody tr.active td, .custom-table tbody tr:hover th, .custom-table tbody tr:hover td {
-            color: #ed7966; /*texto celda hover*/
-            background: #ed7966; } /*color celda hover*/
-            .custom-table tbody tr.active th a, .custom-table tbody tr.active td a, .custom-table tbody tr:hover th a, .custom-table tbody tr:hover td a {
-            color: #ed7966; }
+    border-radius: 10px;
+}
 
+.custom-table thead tr, .custom-table thead th {
+    background: #303179;
+    /*color header back*/
+    border-top: none;
+    border-bottom: none !important;
+    color: #ffffff;
+    /*color header text */
+}
+
+.custom-table tbody th, .custom-table tbody td {
+    color: #777;
+    font-weight: 400;
+    padding-bottom: 5px;
+    padding-top: 5px;
+    font-weight: 300;
+    text-align: center;
+}
+
+.custom-table tbody tr th, .custom-table tbody tr td {
+    background: #Fae5df;
+    /*color celda normal*/
+    border: none;
+    -webkit-transition: .3s all ease;
+    -o-transition: .3s all ease;
+    transition: .3s all ease;
+}
+
+.custom-table tbody tr th a, .custom-table tbody tr td a {
+    color: rgb(110, 110, 110);
+}
+
+/*texto celda normal*/
+
+.custom-table tbody tr.spacer td {
+    padding: 0 !important;
+    height: 3px;
+    border-radius: 0 !important;
+    background: transparent !important;
+}
+
+.custom-table tbody tr.active th, .custom-table tbody tr.active td, .custom-table tbody tr:hover th, .custom-table tbody tr:hover td {
+    color: #ed7966;
+    /*texto celda hover*/
+    background: #ed7966;
+}
+
+/*color celda hover*/
+
+.custom-table tbody tr.active th a, .custom-table tbody tr.active td a, .custom-table tbody tr:hover th a, .custom-table tbody tr:hover td a {
+    color: #ed7966;
+}
 
 /*tablas sin hover*/
+
 .custom-table2 {
-    min-width: 800px; 
+    min-width: 800px;
     margin-left: auto;
     margin-right: auto;
-    border-radius: 10px;}
-    .custom-table2 thead tr, .custom-table2 thead th {
-        background: #303179; /*color header back*/
-        border-top: none;
-        border-bottom: none !important;
-        color: #ffffff;  /*color header text */
-    }
-    .custom-table2 tbody th, .custom-table2 tbody td {
-            color: #777;
-            font-weight: 400;
-            padding-bottom: 5px;
-            padding-top: 5px;
-            font-weight: 300; 
-            text-align: center;}
-    .custom-table2 tbody tr th, .custom-table2 tbody tr td {
-            background: #Fae5df; /*color celda normal*/
-            border: none;
-            -webkit-transition: .3s all ease;
-            -o-transition: .3s all ease;
-            transition: .3s all ease; }
-    .custom-table2 tbody tr th, .custom-table2 tbody tr td {
-                color: rgb(110, 110, 110); } /*texto celda normal*/
-    .custom-table2 tbody tr.spacer td {
-            padding: 0 !important;
-            height: 3px;
-            border-radius: 0 !important;
-            background: transparent !important; }
-    .custom-table2 tbody tr.active th, .custom-table2 tbody tr.active td, .custom-table2 tbody tr:hover th, .custom-table2 tbody tr:hover td {
-            color: #777; /*texto celda hover*/
-            background: #Fae5df; } /*color celda hover*/
-            .custom-table tbody tr.active th a, .custom-table tbody tr.active td a, .custom-table tbody tr:hover th a, .custom-table tbody tr:hover td a {
-            color: #777; }
-.custom-table2 a{text-decoration: none;
-    border-bottom:1px solid #ed7966}
-.custom-table2 a:link{
-    color:#ed7966;
+    border-radius: 10px;
+}
+
+.custom-table2 thead tr, .custom-table2 thead th {
+    background: #303179;
+    /*color header back*/
+    border-top: none;
+    border-bottom: none !important;
+    color: #ffffff;
+    /*color header text */
+}
+
+.custom-table2 tbody th, .custom-table2 tbody td {
+    color: #777;
+    font-weight: 400;
+    padding-bottom: 5px;
+    padding-top: 5px;
+    font-weight: 300;
+    text-align: center;
+}
+
+.custom-table2 tbody tr th, .custom-table2 tbody tr td {
+    background: #Fae5df;
+    /*color celda normal*/
+    border: none;
+    -webkit-transition: .3s all ease;
+    -o-transition: .3s all ease;
+    transition: .3s all ease;
+}
+
+.custom-table2 tbody tr th, .custom-table2 tbody tr td {
+    color: rgb(110, 110, 110);
+}
+
+/*texto celda normal*/
+
+.custom-table2 tbody tr.spacer td {
+    padding: 0 !important;
+    height: 3px;
+    border-radius: 0 !important;
+    background: transparent !important;
+}
+
+.custom-table2 tbody tr.active th, .custom-table2 tbody tr.active td, .custom-table2 tbody tr:hover th, .custom-table2 tbody tr:hover td {
+    color: #777;
+    /*texto celda hover*/
+    background: #Fae5df;
+}
+
+/*color celda hover*/
+
+.custom-table tbody tr.active th a, .custom-table tbody tr.active td a, .custom-table tbody tr:hover th a, .custom-table tbody tr:hover td a {
+    color: #777;
+}
+
+.custom-table2 a {
+    text-decoration: none;
+    border-bottom: 1px solid #ed7966
+}
+
+/*links en tablas*/
+
+.custom-table2 a:link {
+    color: #ed7966;
     text-decoration: underline;
 }
-.custom-table2 a:visited{
-    color:#ed7966;
+
+/*links en tablas */
+
+.custom-table2 a:visited {
+    color: #ed7966;
     text-decoration: underline;
 }
-.head{
-    background:#303179
+
+.head {
+    background: #303179
 }
-.custom-table2 a:hover{color:#303179;
-    border-bottom:1px solid #303179}
-.nombre-operon a{text-decoration: none;
-    border-bottom:1px solid #ed7966}
-.nombre-operon a:link{
-    color:#ed7966;
+
+.custom-table2 a:hover {
+    color: #303179;
+    /*links hover*/
+    border-bottom: 1px solid #303179
+}
+
+.nombre-operon a {
+    text-decoration: none;
+    border-bottom: 1px solid #ed7966
+}
+
+.nombre-operon a:link {
+    color: #ed7966;
     text-decoration: underline;
 }
-.nombre-operon a:hover{
-    color:#303179;
-    border-bottom:1px solid #303179}
-    .nombre-operon a:visited{
-        color:#ed7966;
-        text-decoration: underline;
-    }
-#product tbody th, #product tbody td{
+
+.nombre-operon a:hover {
+    color: #303179;
+    border-bottom: 1px solid #303179
+}
+
+.nombre-operon a:visited {
+    color: #ed7966;
+    text-decoration: underline;
+}
+
+#product tbody th, #product tbody td {
     color: #777;
     font-weight: 400;
     padding-bottom: 5px;
     padding-top: 5px;
     padding-left: 30px;
     padding-right: 30px;
-    font-weight: 300; 
+    font-weight: 300;
     text-align: center;
 }
+
+/*tablas de transcription unit en gen*/
+
 .custom-table3 {
-    min-width: 800px; 
+    min-width: 800px;
     margin-left: auto;
     margin-right: auto;
-    border-radius: 10px;}
-.custom-table3 thead tr, .custom-table3 thead th {
-        background: #303179; /*color header back*/
-        border-top: none;
-        border-bottom: none !important;
-        color: #ed7966;  /*color header text */
+    border-radius: 10px;
 }
+
+.custom-table3 thead tr, .custom-table3 thead th {
+    background: #303179;
+    /*color header back*/
+    border-top: none;
+    border-bottom: none !important;
+    color: #ed7966;
+    /*color header text */
+}
+
 .custom-table3 tbody tr th, .custom-table3 tbody tr td {
-    background: #f7b6a5; /*color celda normal*/
+    background: #f7b6a5;
+    /*color celda normal*/
     color: #777;
     border: none;
     -webkit-transition: .3s all ease;
     -o-transition: .3s all ease;
-    transition: .3s all ease; }
-    .custom-table3 tbody tr.active th, .custom-table3 tbody tr.active td, .custom-table3 tbody tr:hover th, .custom-table3 tbody tr:hover td {
-        color: #ffff; /*texto celda hover*/
-        background: #ed7966; } /*color celda hover*/
-        .custom-table tbody tr.active th a, .custom-table tbody tr.active td a, .custom-table tbody tr:hover th a, .custom-table tbody tr:hover td a {
-        color: #ffff; }
-.button{
+    transition: .3s all ease;
+}
+
+.custom-table3 tbody tr.active th, .custom-table3 tbody tr.active td, .custom-table3 tbody tr:hover th, .custom-table3 tbody tr:hover td {
+    color: #ffff;
+    /*texto celda hover*/
+    background: #ed7966;
+}
+
+/*color celda hover*/
+
+.custom-table tbody tr.active th a, .custom-table tbody tr.active td a, .custom-table tbody tr:hover th a, .custom-table tbody tr:hover td a {
+    color: #ffff;
+}
+
+/*boton*/
+
+.button {
     background-color: #303179;
-    color:white;
+    color: white;
     height: 30px;
-    border:none;
+    border: none;
     border-radius: 5px;
     font-size: 15px;
 }
+
 /*boton anterior*/
-#anterior{
-        background-color: #303179;
-        float:left;
-        margin-left: 10px;
-        border: none;
-        border-radius: 5px;
-        color: white;
-        height: 30px;
-        padding: 3px 5px;
-        text-align: center;
-        text-decoration: none;
-        font-size: 17px;}
-#anterior:hover{
-    background-color: #ed7966; 
-        color: white;
-        transition: .3s;
+
+#anterior {
+    background-color: #303179;
+    float: left;
+    margin-left: 10px;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    height: 30px;
+    padding: 3px 5px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 17px;
 }
-#anterior::after{transition: .3s;}
+
+/*boton anterior en hover*/
+
+#anterior:hover {
+    background-color: #ed7966;
+    color: white;
+    transition: .3s;
+}
+
+/*animacion despues de hover en boton anterior*/
+
+#anterior::after {
+    transition: .3s;
+}
+
+/*botones de formulario en hover*/
+
 .button:hover {
-        background-color: #ed7966;
-        color: white;
-        transition: .3s;
-        }
-.button::after{transition: .3s}
+    background-color: #ed7966;
+    color: white;
+    transition: .3s;
+}
+
+/*transicion del boton despues de hover*/
+
+.button::after {
+    transition: .3s
+}
+
+/*caja de busqueda principal del formulario*/
+
 .formulario input[type=text] {
-            float:inline-start;
-            padding: 6px;
-            border: none;
-            background: #Fae5df;
-            margin-top: 0px;
-            margin-right: 00px;
-            margin-left: 0px;
-            font-size: 17px;
-            height: 40px;
-            vertical-align: middle;
-            border-radius: 5px;
+    float: inline-start;
+    padding: 6px;
+    border: none;
+    background: #Fae5df;
+    margin-top: 0px;
+    margin-right: 00px;
+    margin-left: 0px;
+    font-size: 17px;
+    height: 40px;
+    vertical-align: middle;
+    border-radius: 5px;
 }

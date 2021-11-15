@@ -1,6 +1,8 @@
+  <!-- Pagina para los resultados de busqueda "SEARCH"-->
+  <!--Por Sofia Salazar-->
+  <!--15 nov 2021-->
 <html>
 <head>
-  <!-- Pagina para los resultados de busqueda-->
         <title> Results </title>
         <!-- Elementos del encabezado -->
         <link rel="stylesheet" type="text/css" href="/PROYECTO/mystyle.css">
@@ -21,6 +23,7 @@
         </div>
         </nav>
         <header>
+          <!--foto de olas azul-->
           <img src="/PROYECTO/header_azul.png" alt="header logo">
         </header>
       <br><br>
