@@ -108,7 +108,7 @@
              ?>
            <?php
             } else {
-              ?> <br><h1> <?= $gene_req; ?> is not registered in promotedb :( <br><h1>
+              ?> <br><h1> "<?= $gene_req; ?>" is not registered in LCGEJ database <br><h1>
           <?php }?>
           <br><br>
 
